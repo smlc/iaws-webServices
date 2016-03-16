@@ -1,6 +1,7 @@
 import com.google.gson.JsonArray;
 import org.springframework.http.MediaType;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public class ApiJCDecaux {
         etu = wt.path("etudiants").request(MediaType.APPLICATION_JSON).get(JsonArray.class);
     }
 
-    public Map<String,Integer> getStationNonVide(String adresse){
+    public Map<String,Integer> getStationNonVide(Point point){
 
     }
 
