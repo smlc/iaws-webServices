@@ -14,7 +14,7 @@ public class ApiJCDecaux {
     Client client;
     public ApiJCDecaux(){
          client = ClientBuilder.newClient();
-        wt = client.target("http://notes.tsaap.eu/Scolarite/api/v1");
+        wt = client.target("http://notes.tsaap.eu/Scolarite/api/vd1");
         etu = wt.path("etudiants").request(MediaType.APPLICATION_JSON).get(JsonArray.class);
     }
 
