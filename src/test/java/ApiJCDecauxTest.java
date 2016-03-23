@@ -9,12 +9,11 @@ import static org.junit.Assert.*;
 public class ApiJCDecauxTest {
 
     @Test
-    public void isConected() throws Exception {
+    public void isConnected() throws Exception {
         //Given
         ApiJCDecaux api = new ApiJCDecaux();
 
-
-        assertTrue(api.isConected());
+        assertTrue(api.isConnected());
     }
 
     @Test
