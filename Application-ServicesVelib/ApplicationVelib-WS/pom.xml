@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>groupId</groupId>
+  <artifactId>IAWS2016-MsieLand-ProjetIAWS</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>IAWS2016-MsieLand-ProjetIAWS Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+
+    <dependency>
+      <groupId>org.springframework.ws</groupId>
+      <artifactId>spring-ws-core</artifactId>
+      <version>2.1.2.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.ws</groupId>
+      <artifactId>spring-ws-test</artifactId>
+      <version>2.1.2.RELEASE</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <finalName>IAWS2016-MsieLand-ProjetIAWS</finalName>
+  </build>
+</project>
