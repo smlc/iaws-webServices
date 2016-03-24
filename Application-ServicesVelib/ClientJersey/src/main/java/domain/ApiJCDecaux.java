@@ -45,7 +45,7 @@ public class ApiJCDecaux {
                 .request(MediaType.APPLICATION_JSON).get(String.class));
         object.getJsonObject(1).getString("status");
         Station station = new Station();
-        station.setAdresse(object.getJsonObject(1).getString("adresse"));
+        station.setAdresse(object.getJsonObject(1).getString("address"));
         return null;
 
     }
