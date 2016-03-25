@@ -25,8 +25,8 @@ public class ApiJCDecaux {
     JsonArray object;
     private static String apiKey = "f6c3385d0ce14f88d6616b15c85bd3989aa478a8";
     private static String UriApi = "https://api.jcdecaux.com/vls/v1/stations?apiKey="+apiKey;
-    public ApiJCDecaux(){
 
+    public ApiJCDecaux(){
 
         wt = ClientBuilder.newClient().target(UriApi);
 
@@ -45,12 +45,15 @@ public class ApiJCDecaux {
         object.getJsonObject(1).getString("status");
         Station station = new Station();
         station.setAdresse(object.getJsonObject(1).getString("address"));
+<<<<<<< HEAD
+=======
         return null;
+>>>>>>> 50cdbd03406f8ba0665fd5e2eb33ae5ffa37ad8b
 
+        return null;
     }
-    public boolean isConected(){
+
+    public boolean isConnected(){
         return true;
     }
-
-
 }

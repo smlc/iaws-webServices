@@ -1,4 +1,9 @@
+package groupId;
+
+import domain.ApiJCDecaux;
 import domain.Station;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -13,7 +18,7 @@ public class ApiJCDecauxTest {
         //Given
         ApiJCDecaux api = new ApiJCDecaux();
 
-        assertTrue(api.isConnected());
+        Assert.assertTrue(api.isConnected());
     }
 
     @Test
@@ -24,8 +29,6 @@ public class ApiJCDecauxTest {
         //When
         Station station = api.getStation("Toulouse");
 
-        assertNull(station);
+        Assert.assertNull(station);
     }
-
-
 }
