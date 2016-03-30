@@ -19,9 +19,10 @@ public class ApiOpenWeatherMapTest {
 
     @Test
     public void getMeteo () {
-
+        //Given
         ApiOpenWeatherMap api = new ApiOpenWeatherMap();
 
+        //When
         api.getMeteo();
     }
 }
