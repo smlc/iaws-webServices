@@ -1,84 +1,96 @@
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.json.JsonObject;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by mars on 20/03/16.
  */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Station {
 
-    private int stationNumber;
-    private String contractName;
-    private String stationName;
-    private String adresse;
-    private boolean isOpen;
-    private int nombrePlaceDisponible;
-    private int nombreVeloDisponible;
+    private int number;
+    private String contract_name;
+    private String name;
+    private String address;
 
-    public int getStationNumber() {
-        return stationNumber;
+    @JsonProperty("position")
+    private Map<Object,Object> position;
+
+    private int available_bike_stands;
+    private int available_bikes;
+
+    public String getContract_name() {
+        return contract_name;
     }
 
-    public void setStationNumber(int stationNumber) {
-        this.stationNumber = stationNumber;
+    public void setContract_name(String contract_name) {
+        this.contract_name = contract_name;
     }
 
-    public String getContractName() {
-        return contractName;
+    public int getNumber() {
+        return number;
     }
 
-    public void setContractName(String contractName) {
-        this.contractName = contractName;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
-    public String getStationName() {
-        return stationName;
+    public String getName() {
+        return name;
     }
 
-    public void setStationName(String stationName) {
-        this.stationName = stationName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getAdresse() {
-        return adresse;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public boolean isOpen() {
-        return isOpen;
+    public Map<Object,Object> getPosition() {
+        return position;
     }
 
-    public void setOpen(boolean open) {
-        isOpen = open;
+    public void setPosition(Map<Object,Object> position) {
+        this.position = position;
     }
 
-    public int getNombrePlaceDisponible() {
-        return nombrePlaceDisponible;
+    public int getAvailable_bike_stands() {
+        return available_bike_stands;
     }
 
-    public void setNombrePlaceDisponible(int nombrePlaceDisponible) {
-        this.nombrePlaceDisponible = nombrePlaceDisponible;
+    public void setAvailable_bike_stands(int available_bike_stands) {
+        this.available_bike_stands = available_bike_stands;
     }
 
-    public int getNombreVeloDisponible() {
-        return nombreVeloDisponible;
+    public int getAvailable_bikes() {
+        return available_bikes;
     }
 
-    public void setNombreVeloDisponible(int nombreVeloDisponible) {
-        this.nombreVeloDisponible = nombreVeloDisponible;
+    public void setAvailable_bikes(int available_bikes) {
+        this.available_bikes = available_bikes;
     }
 
     @Override
     public String toString() {
         return "Station{" +
-                "stationNumber=" + stationNumber +
-                ", contractName='" + contractName + '\'' +
-                ", stationName='" + stationName + '\'' +
-                ", adresse='" + adresse + '\'' +
-                ", isOpen=" + isOpen +
-                ", nombrePlaceDisponible=" + nombrePlaceDisponible +
-                ", nombreVeloDisponible=" + nombreVeloDisponible +
+                "number=" + number +
+                ", contract_name='" + contract_name + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", position=" + position +
+                ", available_bike_stands=" + available_bike_stands +
+                ", available_bikes=" + available_bikes +
                 '}';
     }
 }

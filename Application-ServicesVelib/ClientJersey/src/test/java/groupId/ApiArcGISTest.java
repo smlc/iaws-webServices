@@ -1,14 +1,15 @@
 package groupId;
 
-import static org.junit.Assert.*;
 
-import domain.ApiArcGIS;
+import api.ApiArcGIS;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.json.*;
+import static org.junit.Assert.*;
+
 import java.awt.*;
-import java.io.StringReader;
+
 
 /**
  * Created by lova on 23/03/16.
@@ -20,7 +21,8 @@ public class ApiArcGISTest {
         //Given
         ApiArcGIS api = new ApiArcGIS();
 
-        Assert.assertTrue(api.isConnected());
+        assertTrue(api.isConnected());
+
     }
 
     @Test

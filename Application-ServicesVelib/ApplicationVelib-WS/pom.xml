@@ -7,6 +7,7 @@
     <groupId>groupId</groupId>
     <artifactId>IAWS2016-MsieLand-ProjetIAWS</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <relativePath>../../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <packaging>war</packaging>
@@ -33,13 +34,11 @@
     <dependency>
       <groupId>org.springframework.ws</groupId>
       <artifactId>spring-ws-core</artifactId>
-      <version>2.1.2.RELEASE</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework.ws</groupId>
       <artifactId>spring-ws-test</artifactId>
-      <version>2.1.2.RELEASE</version>
     </dependency>
   </dependencies>
 
