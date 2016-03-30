@@ -1,6 +1,6 @@
 package groupId;
 
-import domain.ApiOpenWeatherMap;
+import api.ApiOpenWeatherMap;
 import org.junit.Assert;
 import org.junit.Test;
 
