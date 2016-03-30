@@ -4,6 +4,9 @@ import org.w3c.dom.Document;
 
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -21,18 +24,36 @@ public class ApiOpenWeatherMap {
     public ApiOpenWeatherMap () {
 
         wt = ClientBuilder.newClient().target(UriApi);
+        if(!isConnected()){
+            System.out.println("Connexion echoué");
+            return;
+        }
+    }
 
-        Document docXML = wt.queryParam("mode", "xml").queryParam("q", "toulouse")
+    public Double getMeteo () {
+
+        Document docXML = wt.queryParam("mode", "xml").queryParam("q", "redon")
                 .request(MediaType.APPLICATION_XML).get(Document.class);
 
+        XPath xPath =  XPathFactory.newInstance().newXPath();
+        String pluviometrie = null;
+
+        try {
+            pluviometrie = xPath.compile("/current/precipitation[@mode]/@value").evaluate(docXML);
+        } catch (XPathExpressionException e) {
+            e.printStackTrace();
+        }
+
+        if (!pluviometrie.isEmpty())
+            return Double.parseDouble(pluviometrie);
+        return 0.;
     }
 
-    public void getMeteo () {
+    public boolean isConnected() {
 
-        //System.out.println(wt.request(MediaType.APPLICATION_XML).get(String.class));
-    }
+        if(wt.request().head().getStatus()==200)
+            return true;
 
-    public boolean isConnected(){
-        return true;
+        return false;
     }
 }
