@@ -19,7 +19,8 @@ public class ApiJCDecauxTest {
         //Given
         ApiJCDecaux api = new ApiJCDecaux();
 
-      assertTrue(api.isConnected());
+        //When
+        assertTrue(api.isConnected());
     }
 
     @Test
@@ -28,8 +29,8 @@ public class ApiJCDecauxTest {
         ApiJCDecaux api = new ApiJCDecaux();
 
         //When
-       // List<Station> stations = api.getStation("Toulouse");
-
-      //  Assert.assertNull(station);
+        List<Station> stations = api.getStation("Toulouse");
+        System.out.println(stations.get(1));
+       assertNotSame(0,stations.size());
     }
 }

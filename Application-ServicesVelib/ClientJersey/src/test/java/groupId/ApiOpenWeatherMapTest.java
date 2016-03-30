@@ -1,6 +1,6 @@
 package groupId;
 
-import domain.ApiOpenWeatherMap;
+import api.ApiOpenWeatherMap;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,6 +15,7 @@ public class ApiOpenWeatherMapTest {
         ApiOpenWeatherMap api = new ApiOpenWeatherMap();
 
         Assert.assertTrue(api.isConnected());
+
     }
 
     @Test
