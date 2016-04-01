@@ -4,6 +4,8 @@ import api.ApiOpenWeatherMap;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 /**
  * Created by lova on 29/03/16.
  */
@@ -14,8 +16,7 @@ public class ApiOpenWeatherMapTest {
         //Given
         ApiOpenWeatherMap api = new ApiOpenWeatherMap();
 
-        Assert.assertTrue(api.isConnected());
-
+        assertTrue(api.isConnected());
     }
 
     @Test
@@ -24,6 +25,8 @@ public class ApiOpenWeatherMapTest {
         ApiOpenWeatherMap api = new ApiOpenWeatherMap();
 
         //When
-        api.getMeteo();
+        Double pluviometrie = api.getMeteo();
+
+        assertEquals(1.58, pluviometrie, 2);
     }
 }
