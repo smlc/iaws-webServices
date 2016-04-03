@@ -1,6 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 *.class
 target
+lib
 *.iml
 .idea
-lib
+

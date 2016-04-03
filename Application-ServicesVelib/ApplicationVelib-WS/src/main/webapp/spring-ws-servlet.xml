@@ -8,7 +8,10 @@
     <context:component-scan base-package="webservice.serviceuserstory1"/>
 
     <sws:annotation-driven/>
+<<<<<<< HEAD
 
 
     <bean id="mediateurApi" class="services.Mediateur"/>
+=======
+>>>>>>> 38a1f75850e4cbe126a7aa217a183d3410cc473a
 </beans>

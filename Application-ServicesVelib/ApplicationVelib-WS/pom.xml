@@ -28,6 +28,7 @@
 
       </plugin>
 
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>jaxb2-maven-plugin</artifactId>
@@ -50,6 +51,9 @@
     </plugins>
   </build>
 
+
+
+
   <dependencies>
 
     <dependency>
@@ -62,10 +66,12 @@
       <artifactId>spring-ws-test</artifactId>
     </dependency>
 
+
     <dependency>
       <groupId>groupId</groupId>
       <artifactId>ClientJersey</artifactId>
     </dependency>
+
   </dependencies>
 
 </project>

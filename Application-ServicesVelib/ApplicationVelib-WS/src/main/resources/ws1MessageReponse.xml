@@ -1,0 +1,10 @@
+<StationReponse xmlns="http://iaws/ws/contractfirst/station"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://iaws/ws/contractfirst/station ws1MessageReponse.xsd" >
+    <station>
+        <name>Station1</name>
+        <adresse>31 rue valade</adresse>
+        <available_bike_stands>15</available_bike_stands>
+        <available_bikes>10</available_bikes>
+    </station>
+</StationReponse>
