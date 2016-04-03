@@ -30,28 +30,12 @@
 
 
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>jaxb2-maven-plugin</artifactId>
-        <version>1.6</version>
-        <executions>
-          <execution>
-            <id>xjc</id>
-            <goals>
-              <goal>xjc</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <schemaDirectory>${project.basedir}/Application-ServicesVelib/ApplicationVelib-WS/src/main/resources</schemaDirectory>
-          <outputDirectory>${project.basedir}/Application-ServicesVelib/ApplicationVelib-WS/src/main/java/webservice.serviceuserstory1/domain</outputDirectory>
-          <clearOutputDir>false</clearOutputDir>
-        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
       </plugin>
 
     </plugins>
   </build>
-
-
 
 
   <dependencies>
@@ -66,11 +50,15 @@
       <artifactId>spring-ws-test</artifactId>
     </dependency>
 
-
     <dependency>
       <groupId>groupId</groupId>
       <artifactId>ClientJersey</artifactId>
     </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+
 
   </dependencies>
 

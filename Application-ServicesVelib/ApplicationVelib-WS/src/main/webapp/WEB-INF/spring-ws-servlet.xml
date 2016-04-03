@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:sws="http://www.springframework.org/schema/web-services"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <context:component-scan base-package="webservice.serviceuserstory1"/>
+
+    <sws:annotation-driven/>
+
+    <!--<sws:dynamic-wsdl id="ProjetIAWS2016"
+                      portTypeName="WsUserStoryOneA"
+                      locationUri="/ws/wsus1a"
+                      targetNamespace="http://iaws/ws/contractfirst/station">
+        <sws:xsd location="../../resources/ws1MessageReponse.xsd"/>
+    </sws:dynamic-wsdl>-->
+
+
+
+    <bean id="mediateurApi" class="services.Mediateur"/>
+
+</beans>

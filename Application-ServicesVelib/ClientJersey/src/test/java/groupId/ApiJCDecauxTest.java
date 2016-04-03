@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  */
 public class ApiJCDecauxTest {
 
-    @Test
+ /*   @Test
     public void isConnected() throws Exception {
         //Given
         ApiJCDecaux api = new ApiJCDecaux();
@@ -22,7 +22,7 @@ public class ApiJCDecauxTest {
         //When
         assertTrue(api.isConnected());
     }
-
+*/
     @Test
     public void getStation() throws Exception {
         //Given
