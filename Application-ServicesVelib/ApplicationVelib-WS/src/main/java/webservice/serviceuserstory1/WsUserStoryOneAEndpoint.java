@@ -32,7 +32,7 @@ public class WsUserStoryOneAEndpoint {
             reponse.getStation().setAdresse("31 rue valade");
             reponse.getStation().setAvailableBikes("2");
             reponse.getStation().setAvailableBikeStands("5");
-            reponse.getStation().setName("Station1");
+            reponse.getStation().setName("Station11");
 
             return reponse;
     }
