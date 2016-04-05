@@ -27,8 +27,17 @@
         <version>2.2</version>
 
       </plugin>
+
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+
     </plugins>
   </build>
+
+
   <dependencies>
 
     <dependency>
@@ -40,6 +49,17 @@
       <groupId>org.springframework.ws</groupId>
       <artifactId>spring-ws-test</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>groupId</groupId>
+      <artifactId>ClientJersey</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+
+
   </dependencies>
 
 </project>

@@ -14,22 +14,23 @@ import static org.junit.Assert.*;
  */
 public class ApiJCDecauxTest {
 
-    @Test
+ /*   @Test
     public void isConnected() throws Exception {
         //Given
         ApiJCDecaux api = new ApiJCDecaux();
 
-      assertTrue(api.isConnected());
+        //When
+        assertTrue(api.isConnected());
     }
-
+*/
     @Test
     public void getStation() throws Exception {
         //Given
         ApiJCDecaux api = new ApiJCDecaux();
 
         //When
-       // List<Station> stations = api.getStation("Toulouse");
-
-      //  Assert.assertNull(station);
+        List<Station> stations = api.getStation("Toulouse");
+        System.out.println(stations.get(1));
+       assertNotSame(0,stations.size());
     }
 }
