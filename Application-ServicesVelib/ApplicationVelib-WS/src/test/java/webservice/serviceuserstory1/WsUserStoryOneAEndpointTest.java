@@ -12,17 +12,18 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.test.server.MockWebServiceClient;
 
-
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
 import static org.springframework.ws.test.server.RequestCreators.withPayload;
 import static org.springframework.ws.test.server.ResponseMatchers.payload;
+
+
 /**
  * Created by mars on 03/04/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:application-context.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/application-context.xml")
 public class WsUserStoryOneAEndpointTest {
 
     @Autowired
@@ -37,8 +38,8 @@ public class WsUserStoryOneAEndpointTest {
 
     @Test
     public void getStationNonVides() throws Exception {
-        Source requestPayload = new StreamSource(new ClassPathResource("ws1MessageRequest.xml").getInputStream() );
-        Source responsePayload = new StreamSource(new ClassPathResource("ws1MessageReponse.xml").getInputStream());
+        Source requestPayload = new StreamSource(new ClassPathResource("ws1MessageRequestSoap.xml").getInputStream());
+        Source responsePayload = new StreamSource(new ClassPathResource("ws1MessageReponseSoap.xml").getInputStream());
 
         mockClient.sendRequest(withPayload(requestPayload)).
                 andExpect(payload(responsePayload));

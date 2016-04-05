@@ -22,7 +22,10 @@ public class Station {
     @JsonProperty("position")
     private Map<Object,Object> position;
 
+    /* le nombre de points d'attache disponibles pour y ranger un vélo*/
     private int available_bike_stands;
+
+    /* le nombre de vélos disponibles et opérationnels*/
     private int available_bikes;
 
     public String getContract_name() {

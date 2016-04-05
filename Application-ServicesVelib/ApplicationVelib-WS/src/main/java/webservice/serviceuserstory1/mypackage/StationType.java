@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "stationType", namespace = "http://iaws/ws/contractfirst/station", propOrder = {
+@XmlType(name = "stationType", namespace = "http://iaws/ws/contractfirst/stationReponse", propOrder = {
     "name",
     "adresse",
     "availableBikeStands",
@@ -38,13 +38,13 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class StationType {
 
-    @XmlElement(namespace = "http://iaws/ws/contractfirst/station", required = true)
+    @XmlElement(namespace = "http://iaws/ws/contractfirst/stationReponse", required = true)
     protected String name;
-    @XmlElement(namespace = "http://iaws/ws/contractfirst/station", required = true)
+    @XmlElement(namespace = "http://iaws/ws/contractfirst/stationReponse", required = true)
     protected String adresse;
-    @XmlElement(name = "available_bike_stands", namespace = "http://iaws/ws/contractfirst/station", required = true)
+    @XmlElement(name = "available_bike_stands", namespace = "http://iaws/ws/contractfirst/stationReponse", required = true)
     protected String availableBikeStands;
-    @XmlElement(name = "available_bikes", namespace = "http://iaws/ws/contractfirst/station", required = true)
+    @XmlElement(name = "available_bikes", namespace = "http://iaws/ws/contractfirst/stationReponse", required = true)
     protected String availableBikes;
 
     /**

@@ -24,7 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _StationReponse_QNAME = new QName("http://iaws/ws/contractfirst/station", "StationReponse");
+    private final static QName _StationReponse_QNAME = new QName("http://iaws/ws/contractfirst/stationReponse", "StationReponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: webservice.serviceuserstory1.mypackage
@@ -53,7 +53,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link StationReponseType }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://iaws/ws/contractfirst/station", name = "StationReponse")
+    @XmlElementDecl(namespace = "http://iaws/ws/contractfirst/stationReponse", name = "StationReponse")
     public JAXBElement<StationReponseType> createStationReponse(StationReponseType value) {
         return new JAXBElement<StationReponseType>(_StationReponse_QNAME, StationReponseType.class, null, value);
     }

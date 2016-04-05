@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://iaws/ws/contractfirst/station" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="StationReponse" type="stat:StationReponseType" xmlns:stat="http://iaws/ws/contractfirst/station"/>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://iaws/ws/contractfirst/stationReponse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="StationReponse" type="stat:StationReponseType" xmlns:stat="http://iaws/ws/contractfirst/stationReponse"/>
   <xs:complexType name="stationType">
     <xs:sequence>
       <xs:element type="xs:string" name="name"/>
@@ -11,7 +11,7 @@
   </xs:complexType>
   <xs:complexType name="StationReponseType">
     <xs:sequence>
-      <xs:element type="stat:stationType" name="station" xmlns:stat="http://iaws/ws/contractfirst/station"/>
+      <xs:element type="stat:stationType" name="station" xmlns:stat="http://iaws/ws/contractfirst/stationReponse"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

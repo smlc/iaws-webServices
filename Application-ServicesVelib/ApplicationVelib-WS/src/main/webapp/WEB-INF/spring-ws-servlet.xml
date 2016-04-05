@@ -11,7 +11,7 @@
 
     <sws:annotation-driven/>
 
-    <!--<sws:dynamic-wsdl id="ProjetIAWS2016"
+   <!-- <sws:dynamic-wsdl id="ProjetIAWS2016"
                       portTypeName="WsUserStoryOneA"
                       locationUri="/ws/wsus1a"
                       targetNamespace="http://iaws/ws/contractfirst/station">
@@ -20,6 +20,6 @@
 
 
 
-    <bean id="mediateurApi" class="services.Mediateur"/>
+    <bean id="serviceApi" class="services.Mediateur"/>
 
 </beans>

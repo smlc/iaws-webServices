@@ -27,12 +27,12 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "StationReponseType", namespace = "http://iaws/ws/contractfirst/station", propOrder = {
+@XmlType(name = "StationReponseType", namespace = "http://iaws/ws/contractfirst/stationReponse", propOrder = {
     "station"
 })
 public class StationReponseType {
 
-    @XmlElement(namespace = "http://iaws/ws/contractfirst/station", required = true)
+    @XmlElement(namespace = "http://iaws/ws/contractfirst/stationReponse", required = true)
     protected StationType station;
 
     /**

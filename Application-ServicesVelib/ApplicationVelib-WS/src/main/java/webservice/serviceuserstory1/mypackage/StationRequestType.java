@@ -68,6 +68,7 @@ public class StationRequestType {
      *     
      */
     public void setNumeroRue(String value) {
+
         this.numeroRue = value;
     }
 
