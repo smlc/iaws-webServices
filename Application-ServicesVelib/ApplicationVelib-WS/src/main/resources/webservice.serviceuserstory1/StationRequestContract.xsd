@@ -8,5 +8,6 @@
       <xs:element type="xs:string" name="codePostal"/>
       <xs:element type="xs:string" name="ville"/>
     </xs:sequence>
+    <xs:attribute type="xs:boolean" name="requeteStationNonVide"/>
   </xs:complexType>
 </xs:schema>

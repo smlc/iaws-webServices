@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           targetNamespace="http://iaws/ws/contractfirst/station"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="enumRisque">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FAIBLE"/>
+            <xs:enumeration value="MOYEN"/>
+            <xs:enumeration value="FORT"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="ReponseWS2" >
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="risque" type="stat:enumRisque"
+                      xmlns:stat="http://iaws/ws/contractfirst/station" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+
+
+</xs:schema>

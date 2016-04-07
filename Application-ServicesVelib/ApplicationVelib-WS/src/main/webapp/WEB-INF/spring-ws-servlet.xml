@@ -15,7 +15,7 @@
                       portTypeName="WsUserStoryOneA"
                       locationUri="/ws/wsus1a"
                       targetNamespace="http://iaws/ws/contractfirst/station">
-        <sws:xsd location="../../resources/ws1MessageReponse.xsd"/>
+        <sws:xsd location="../../resources/StationReponseContract.xsd"/>
     </sws:dynamic-wsdl>-->
 
 

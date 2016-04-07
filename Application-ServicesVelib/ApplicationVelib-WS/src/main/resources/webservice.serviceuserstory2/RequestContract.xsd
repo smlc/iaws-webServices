@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           targetNamespace="http://iaws/ws/contractfirst/station"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="RequestWS2" type="stat:RequestWS2Type" xmlns:stat="http://iaws/ws/contractfirst/station"/>
+
+  <xs:complexType name="RequestWS2Type">
+    <xs:sequence>
+      <xs:element type="xs:string" name="numeroRue"/>
+      <xs:element type="xs:string" name="nomRue"/>
+      <xs:element type="xs:string" name="codePostal"/>
+      <xs:element type="xs:string" name="ville"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

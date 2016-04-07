@@ -1,6 +1,6 @@
-<StationRequest xmlns="http://iaws/ws/contractfirst/station"
+<StationRequest requeteStationNonVide="true" xmlns="http://iaws/ws/contractfirst/station"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:schemaLocation="http://iaws/ws/contractfirst/station ws1MessageRequest.xsd" >
+                xsi:schemaLocation="http://iaws/ws/contractfirst/station StationRequestContract.xsd" >
     <numeroRue>31</numeroRue>
     <nomRue>rue Valade</nomRue>
     <codePostal>31000</codePostal>

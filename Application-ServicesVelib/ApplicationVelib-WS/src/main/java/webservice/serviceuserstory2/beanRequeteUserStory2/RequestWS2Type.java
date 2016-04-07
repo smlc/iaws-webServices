@@ -1,20 +1,19 @@
 
-package webservice.serviceuserstory1.beanRequete;
+package webservice.serviceuserstory2.beanRequeteUserStory2;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for StationRequestType complex type.
+ * <p>Java class for RequestWS2Type complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="StationRequestType">
+ * &lt;complexType name="RequestWS2Type">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -23,7 +22,6 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="codePostal" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="ville" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
- *       &lt;attribute name="requeteStationNonVide" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -32,13 +30,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "StationRequestType", namespace = "http://iaws/ws/contractfirst/station", propOrder = {
+@XmlType(name = "RequestWS2Type", namespace = "http://iaws/ws/contractfirst/station", propOrder = {
     "numeroRue",
     "nomRue",
     "codePostal",
     "ville"
 })
-public class StationRequestType {
+public class RequestWS2Type {
 
     @XmlElement(namespace = "http://iaws/ws/contractfirst/station", required = true)
     protected String numeroRue;
@@ -48,8 +46,6 @@ public class StationRequestType {
     protected String codePostal;
     @XmlElement(namespace = "http://iaws/ws/contractfirst/station", required = true)
     protected String ville;
-    @XmlAttribute(name = "requeteStationNonVide")
-    protected Boolean requeteStationNonVide;
 
     /**
      * Gets the value of the numeroRue property.
@@ -145,30 +141,6 @@ public class StationRequestType {
      */
     public void setVille(String value) {
         this.ville = value;
-    }
-
-    /**
-     * Gets the value of the requeteStationNonVide property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isRequeteStationNonVide() {
-        return requeteStationNonVide;
-    }
-
-    /**
-     * Sets the value of the requeteStationNonVide property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setRequeteStationNonVide(Boolean value) {
-        this.requeteStationNonVide = value;
     }
 
 }

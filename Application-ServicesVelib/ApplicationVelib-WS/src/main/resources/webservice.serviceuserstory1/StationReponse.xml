@@ -1,6 +1,6 @@
 <StationReponse xmlns="http://iaws/ws/contractfirst/stationReponse"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:schemaLocation="http://iaws/ws/contractfirst/stationReponse ws1MessageReponse.xsd" >
+                xsi:schemaLocation="http://iaws/ws/contractfirst/stationReponse StationReponseContract.xsd" >
     <Stations>
         <station>
             <name>Station1</name>

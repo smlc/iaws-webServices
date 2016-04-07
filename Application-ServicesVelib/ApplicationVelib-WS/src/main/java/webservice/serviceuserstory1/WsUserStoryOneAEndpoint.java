@@ -29,9 +29,11 @@ public class WsUserStoryOneAEndpoint {
         this.serviceApi = serviceApi;
     }
 
-   @PayloadRoot(localPart = "StationRequest",namespace = NAMESPACE_URI)
+   @PayloadRoot(localPart = "StationVideRequest",namespace = NAMESPACE_URI)
    @ResponsePayload
-   public JAXBElement<StationReponseType> getStationNonVides(@RequestPayload JAXBElement<StationRequestType> request){
+   public JAXBElement<StationReponseType> getStation(@RequestPayload JAXBElement<StationRequestType> request){
+
+
 
        /*System.out.println(request.getValue().getNomRue());
             StationReponseType reponse = new StationReponseType();
@@ -51,7 +53,13 @@ public class WsUserStoryOneAEndpoint {
        StationsType listStationReponse = new StationsType();
 
        //Récuperation des station non vides via les api.
-       List<Station> listStation = serviceApi.getStationsNonVides(requestClient.getVille());
+       List<Station> listStation;
+       if(requestClient.isRequeteStationNonVide()){
+           listStation = serviceApi.getStationsNonVides(requestClient.getVille());
+       }else{
+           listStation = serviceApi.getStationsNonCompletes(requestClient.getVille());
+       }
+
 
 
        //Construction de la réponse
@@ -65,7 +73,6 @@ public class WsUserStoryOneAEndpoint {
 
        return factory.createStationReponse(reponseClient);
     }
-
 
 
 }

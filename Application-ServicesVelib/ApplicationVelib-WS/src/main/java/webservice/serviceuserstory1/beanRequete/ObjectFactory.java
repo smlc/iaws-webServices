@@ -52,17 +52,8 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link StationType }
+     * Creer une StationType à partir d'une Station
      * 
-     */
-    public StationType createStationType() {
-        return new StationType();
-    }
-
-
-    /**
-     * Créer une stationType à partir d'une Station
-     *
      */
     public StationType createStationType(Station station) {
 
@@ -71,7 +62,17 @@ public class ObjectFactory {
         stationType.setAdresse(station.getAddress());
         stationType.setAvailableBikes(station.getAvailable_bikes()+"");
         stationType.setAvailableBikeStands(station.getAvailable_bike_stands()+"");
+
         return stationType;
+
+    }
+
+    /**
+     * Create an instance of {@link StationType }
+     *
+     */
+    public StationType createStationType() {
+        return new StationType();
     }
 
     /**
