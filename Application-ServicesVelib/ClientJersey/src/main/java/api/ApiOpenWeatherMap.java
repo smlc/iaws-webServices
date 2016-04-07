@@ -32,7 +32,7 @@ public class ApiOpenWeatherMap {
 
     public Double getMeteo () {
 
-        Document docXML = wt.queryParam("mode", "xml").queryParam("q", "redon")
+        Document docXML = wt.queryParam("mode", "xml").queryParam("q", "toulouse")
                 .request(MediaType.APPLICATION_XML).get(Document.class);
 
         XPath xPath =  XPathFactory.newInstance().newXPath();

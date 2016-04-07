@@ -8,7 +8,9 @@ import domain.Coordonne;
 import domain.Station;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mars on 03/04/16.
@@ -32,19 +34,29 @@ public class Mediateur implements MediateurService {
         this.stationsNonCompletes = new ArrayList<>();
     }
 
-    public List<Station> getStationsNonVides (String contract) {
+    public Map<Station, Double> getStationsNonVides (String contract, String address) {
 
-        List<Station> stationsVille = new ArrayList<>();
-        stationsVille.addAll(jcDecaux.getStation(contract));
+        Map<Station, Double> threeStationsNotEmpty =  new HashMap<>();
+        List<Station> stations = new ArrayList<>();
+        stations.addAll(jcDecaux.getStation(contract));
+        Coordonne positionAddressClient = openStreetMap.getLatLong(address);
 
-        Coordonne positionAdresseClient = openStreetMap.getLatLong(contract);
+        //Récupération des 3 stations non vides
+        threeStationsNotEmpty.putAll(arcGIS.getLengths(positionAddressClient, stations, true));
 
-        //Récupération des distances
-
-        return this.stationsNonVides;
+        return threeStationsNotEmpty;
     }
 
-    public List<Station> getStationsNonCompletes (String contract) {
-        return this.stationsNonCompletes;
+    public Map<Station, Double> getStationsNonCompletes (String contract, String address) {
+
+        Map<Station, Double> threeStationsNotFull =  new HashMap<>();
+        List<Station> stations = new ArrayList<>();
+        stations.addAll(jcDecaux.getStation(contract));
+        Coordonne positionAddressClient = openStreetMap.getLatLong(address);
+
+        //Récupération des 3 stations non complètes
+        threeStationsNotFull.putAll(arcGIS.getLengths(positionAddressClient, stations, false));
+
+        return threeStationsNotFull;
     }
 }
