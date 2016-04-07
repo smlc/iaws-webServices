@@ -1,5 +1,7 @@
 
-package webservice.serviceuserstory1.mypackage;
+package webservice.serviceuserstory1.beanRequete;
+
+import domain.Station;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
@@ -10,7 +12,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the webservice.serviceuserstory1.mypackage package.
+ * generated in the beanRequete package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -27,7 +29,7 @@ public class ObjectFactory {
     private final static QName _StationReponse_QNAME = new QName("http://iaws/ws/contractfirst/stationReponse", "StationReponse");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: webservice.serviceuserstory1.mypackage
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: beanRequete
      * 
      */
     public ObjectFactory() {
@@ -42,11 +44,34 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link StationsType }
+     * 
+     */
+    public StationsType createStationsType() {
+        return new StationsType();
+    }
+
+    /**
      * Create an instance of {@link StationType }
      * 
      */
     public StationType createStationType() {
         return new StationType();
+    }
+
+
+    /**
+     * Créer une stationType à partir d'une Station
+     *
+     */
+    public StationType createStationType(Station station) {
+
+        StationType stationType = new StationType();
+        stationType.setName(station.getName());
+        stationType.setAdresse(station.getAddress());
+        stationType.setAvailableBikes(station.getAvailable_bikes()+"");
+        stationType.setAvailableBikeStands(station.getAvailable_bike_stands()+"");
+        return stationType;
     }
 
     /**

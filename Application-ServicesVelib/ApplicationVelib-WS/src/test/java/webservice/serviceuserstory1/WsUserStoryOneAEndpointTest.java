@@ -38,8 +38,8 @@ public class WsUserStoryOneAEndpointTest {
 
     @Test
     public void getStationNonVides() throws Exception {
-        Source requestPayload = new StreamSource(new ClassPathResource("ws1MessageRequestSoap.xml").getInputStream());
-        Source responsePayload = new StreamSource(new ClassPathResource("ws1MessageReponseSoap.xml").getInputStream());
+        Source requestPayload = new StreamSource(new ClassPathResource("webservice.serviceuserstory1/ws1MessageRequestSoap.xml").getInputStream());
+        Source responsePayload = new StreamSource(new ClassPathResource("webservice.serviceuserstory1/ws1MessageReponseSoap.xml").getInputStream());
 
         mockClient.sendRequest(withPayload(requestPayload)).
                 andExpect(payload(responsePayload));

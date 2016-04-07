@@ -11,7 +11,12 @@
   </xs:complexType>
   <xs:complexType name="StationReponseType">
     <xs:sequence>
-      <xs:element type="stat:stationType" name="station" xmlns:stat="http://iaws/ws/contractfirst/stationReponse"/>
+      <xs:element type="stat:StationsType" name="Stations" xmlns:stat="http://iaws/ws/contractfirst/stationReponse"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StationsType">
+    <xs:sequence>
+      <xs:element type="stat:stationType" name="station" maxOccurs="unbounded" minOccurs="0" xmlns:stat="http://iaws/ws/contractfirst/stationReponse"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

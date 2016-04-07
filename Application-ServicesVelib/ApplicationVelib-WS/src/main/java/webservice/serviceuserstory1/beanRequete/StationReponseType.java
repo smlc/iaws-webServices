@@ -1,5 +1,5 @@
 
-package webservice.serviceuserstory1.mypackage;
+package webservice.serviceuserstory1.beanRequete;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="station" type="{http://iaws/ws/contractfirst/station}stationType"/>
+ *         &lt;element name="Stations" type="{http://iaws/ws/contractfirst/stationReponse}StationsType"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,35 +28,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "StationReponseType", namespace = "http://iaws/ws/contractfirst/stationReponse", propOrder = {
-    "station"
+    "stations"
 })
 public class StationReponseType {
 
-    @XmlElement(namespace = "http://iaws/ws/contractfirst/stationReponse", required = true)
-    protected StationType station;
+    @XmlElement(name = "Stations", namespace = "http://iaws/ws/contractfirst/stationReponse", required = true)
+    protected StationsType stations;
 
     /**
-     * Gets the value of the station property.
+     * Gets the value of the stations property.
      * 
      * @return
      *     possible object is
-     *     {@link StationType }
+     *     {@link StationsType }
      *     
      */
-    public StationType getStation() {
-        return station;
+    public StationsType getStations() {
+        return stations;
     }
 
     /**
-     * Sets the value of the station property.
+     * Sets the value of the stations property.
      * 
      * @param value
      *     allowed object is
-     *     {@link StationType }
+     *     {@link StationsType }
      *     
      */
-    public void setStation(StationType value) {
-        this.station = value;
+    public void setStations(StationsType value) {
+        this.stations = value;
     }
 
 }
