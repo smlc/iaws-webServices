@@ -44,6 +44,7 @@ public class ApiArcGISTest {
         //When
         double distance = api.getDistance(pointFrom, pointTo);
 
+        //Then
         Assert.assertEquals(0, distance, 0);
     }
 
@@ -112,8 +113,9 @@ public class ApiArcGISTest {
         threeStations.put(s4, 0.017303176346981187);
 
         //When
-        threeStationsResultat.putAll(api.getLengths (adressClient, stations));
+        threeStationsResultat.putAll(api.getLengths (adressClient, stations, true));
 
+        //Then
         assertEquals(threeStations, threeStationsResultat);
     }
 }

@@ -79,25 +79,41 @@ public class ApiArcGIS {
         return 0.;
     }
 
-    public Map<Station, Double> getLengths (Coordonne adressClient, List<Station> stations) {
+    public Map<Station, Double> getLengths (Coordonne adressClient, List<Station> stations, boolean emptyOrFull) {
 
         MultivaluedMap<String, String> formData = new MultivaluedHashMap<String, String>();
         List<Station> candidateStations = new ArrayList<>();
         Map<Station, Double> threeStations = new HashMap<>();
 
         String jsonRequest = "[";
-        for (int i=0; i<stations.size(); i++) {
-            if (stations.get(i).getAvailable_bikes() != 0) {
-                jsonRequest = jsonRequest+"{\"paths\":" +
-                        "[[["+adressClient.getLat()+", "+adressClient.getLon()+"], " +
-                        "["+stations.get(i).getPosition().get("lat")+", "+stations.get(i).getPosition().get("lng") +
-                        "]]]}";
-                if (i<stations.size()-1) {
-                    jsonRequest = jsonRequest+",";
+        if (emptyOrFull) {
+            for (int i=0; i<stations.size(); i++) {
+                if (stations.get(i).getAvailable_bikes() != 0) {
+                    jsonRequest = jsonRequest+"{\"paths\":" +
+                            "[[["+adressClient.getLat()+", "+adressClient.getLon()+"], " +
+                            "["+stations.get(i).getPosition().get("lat")+", "+stations.get(i).getPosition().get("lng") +
+                            "]]]}";
+                    if (i<stations.size()-1) {
+                        jsonRequest = jsonRequest+",";
+                    }
+                    candidateStations.add(stations.get(i));
                 }
-                candidateStations.add(stations.get(i));
+            }
+        } else {
+            for (int i=0; i<stations.size(); i++) {
+                if (stations.get(i).getAvailable_bike_stands() != 0) {
+                    jsonRequest = jsonRequest+"{\"paths\":" +
+                            "[[["+adressClient.getLat()+", "+adressClient.getLon()+"], " +
+                            "["+stations.get(i).getPosition().get("lat")+", "+stations.get(i).getPosition().get("lng") +
+                            "]]]}";
+                    if (i<stations.size()-1) {
+                        jsonRequest = jsonRequest+",";
+                    }
+                    candidateStations.add(stations.get(i));
+                }
             }
         }
+
         jsonRequest = jsonRequest+"]";
 
         JsonReader reader = Json.createReader(new StringReader(jsonRequest));
