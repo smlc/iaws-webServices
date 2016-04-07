@@ -55,6 +55,7 @@ public class WsUserStoryOneAEndpoint {
        //Récuperation des station non vides via les api.
        List<Station> listStation;
        if(requestClient.isRequeteStationNonVide()){
+
            listStation = serviceApi.getStationsNonVides(requestClient.getVille());
        }else{
            listStation = serviceApi.getStationsNonCompletes(requestClient.getVille());
