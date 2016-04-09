@@ -1,11 +1,12 @@
 
 package webservice.serviceuserstory1.beanRequete;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.annotation.Generated;
+import javax.jws.WebResult;
+import javax.xml.bind.annotation.*;
+import javax.xml.ws.ResponseWrapper;
 
+import org.springframework.ws.server.endpoint.annotation.*;
 
 /**
  * <p>Java class for StationReponseType complex type.
@@ -26,13 +27,16 @@ import javax.xml.bind.annotation.XmlType;
  * 
  * 
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "StationReponseType", namespace = "http://iaws/ws/contractfirst/stationReponse", propOrder = {
+@XmlType(name = "StationReponseType", namespace = "http://iaws/ws/contractfirst/station", propOrder = {
     "stations"
 })
 public class StationReponseType {
 
-    @XmlElement(name = "Stations", namespace = "http://iaws/ws/contractfirst/stationReponse", required = true)
+    @XmlElement(name = "Stations", namespace = "http://iaws/ws/contractfirst/station", required = true)
+    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-04-08T05:06:52+02:00", comments = "JAXB RI v2.2.4-2")
+
     protected StationsType stations;
 
     /**
@@ -55,6 +59,7 @@ public class StationReponseType {
      *     {@link StationsType }
      *     
      */
+    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-04-08T05:06:52+02:00", comments = "JAXB RI v2.2.4-2")
     public void setStations(StationsType value) {
         this.stations = value;
     }

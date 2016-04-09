@@ -79,11 +79,11 @@ public class ApiArcGIS {
         return 0.;
     }
 
-    public Map<Station, Double> getLengths (Coordonne adressClient, List<Station> stations, boolean emptyOrFull) {
+    public List<Station> getLengths (Coordonne adressClient, List<Station> stations, boolean emptyOrFull) {
 
         MultivaluedMap<String, String> formData = new MultivaluedHashMap<String, String>();
         List<Station> candidateStations = new ArrayList<>();
-        Map<Station, Double> threeStations = new HashMap<>();
+        List<Station> threeStations = new ArrayList<>();
 
         String jsonRequest = "[";
         if (emptyOrFull) {
@@ -127,17 +127,17 @@ public class ApiArcGIS {
         JsonArray response = wt.request(MediaType.APPLICATION_JSON).post(Entity.form(formData), JsonObject.class)
                 .getJsonArray("lengths");
 
-        threeStations.putAll(researchThreeLengthsMin(response, candidateStations));
+        threeStations.addAll(researchThreeLengthsMin(response, candidateStations));
 
         return threeStations;
     }
 
-    private Map<Station, Double> researchThreeLengthsMin (JsonArray response, List<Station> candidateStations) {
+    private List<Station> researchThreeLengthsMin (JsonArray response, List<Station> candidateStations) {
 
         // Liste contenant toutes les stations
             ArrayList<Double> stationList = new ArrayList<Double>();
         // Liste des trois stations avec leur distance
-            Map<Station, Double> threeStations = new HashMap<>();
+            List<Station> threeStations = new ArrayList<>();
         // Tampons contenant l'indice et la distance minimale
             Double distanceMin;
             int indexMin = 0;
@@ -155,7 +155,8 @@ public class ApiArcGIS {
                     indexMin = i;
                 }
             }
-            threeStations.put(candidateStations.get(indexMin), distanceMin);
+            candidateStations.get(indexMin).setDistance(distanceMin);
+            threeStations.add(candidateStations.get(indexMin));
             stationList.remove(indexMin);
             candidateStations.remove(indexMin);
         }

@@ -1,19 +1,28 @@
-<StationReponse xmlns="http://iaws/ws/contractfirst/stationReponse"
+<StationReponse xmlns="http://iaws/ws/contractfirst/station"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:schemaLocation="http://iaws/ws/contractfirst/stationReponse StationReponseContract.xsd" >
-    <Stations>
-        <station>
-            <name>Station1</name>
-            <adresse>31 rue valade</adresse>
-            <available_bike_stands>15</available_bike_stands>
-            <available_bikes>10</available_bikes>
-        </station>
-        <station>
-            <name>Station1</name>
-            <adresse>31 rue valade</adresse>
-            <available_bike_stands>15</available_bike_stands>
-            <available_bikes>10</available_bikes>
-        </station>
-    </Stations>
+                xsi:schemaLocation="http://iaws/ws/contractfirst/station StationReponseContact.xsd" >
+       <Stations>
+           <station>
+               <name>00029 - VALADE</name>
+               <adresse>31 RUE VALADE</adresse>
+               <available_bike_stands>0</available_bike_stands>
+               <available_bikes>19</available_bikes>
+               <distance>3.1607093446221394E-4</distance>
+           </station>
+           <station>
+               <name>00030 - PLACE ANATOLE FRANCE</name>
+               <adresse>40 PL ANATOLE FRANCE</adresse>
+               <available_bike_stands>7</available_bike_stands>
+               <available_bikes>18</available_bikes>
+               <distance>0.0014205523009939828</distance>
+           </station>
+           <station>
+               <name>00051 - DUPORTAL BRIENNE</name>
+               <adresse>1 BD ARMAND DUPORTAL</adresse>
+               <available_bike_stands>4</available_bike_stands>
+               <available_bikes>14</available_bikes>
+               <distance>0.0025067342128130264</distance>
+           </station>
+       </Stations>
 
 </StationReponse>

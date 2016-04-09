@@ -11,9 +11,9 @@ import java.util.Map;
  */
 public interface MediateurService {
 
-    public Map<Station, Double> getStationsNonVides (String contract, String address);
+    public List<Station> getStationsNonVides (String contract, String address);
 
-    public Map<Station, Double> getStationsNonCompletes (String contract, String address);
+    public List<Station> getStationsNonCompletes (String contract, String address);
 
-    public XMLGregorianCalendar getTempsTrajet (AdresseArriveeType address)
+    public XMLGregorianCalendar getTempsTrajet (AdresseArriveeType address);
 }

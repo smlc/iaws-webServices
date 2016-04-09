@@ -1,7 +1,6 @@
 package groupId;
 
 import api.ApiOpenWeatherMap;
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,7 +8,7 @@ import static org.junit.Assert.*;
 /**
  * Created by lova on 29/03/16.
  */
-public class ApiOpenWeatherMapTest {
+public class  ApiOpenWeatherMapTest {
 
     @Test
     public void isConnected() throws Exception {
@@ -25,7 +24,7 @@ public class ApiOpenWeatherMapTest {
         ApiOpenWeatherMap api = new ApiOpenWeatherMap();
 
         //When
-        Double pluviometrie = api.getMeteo();
+        Double pluviometrie = api.getMeteo("toulouse");
 
         assertEquals(1.58, pluviometrie, 2);
     }

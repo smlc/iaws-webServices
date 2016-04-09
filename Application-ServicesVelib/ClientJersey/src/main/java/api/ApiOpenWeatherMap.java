@@ -7,8 +7,6 @@ import javax.ws.rs.core.MediaType;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Created by lova on 29/03/16.
@@ -30,9 +28,9 @@ public class ApiOpenWeatherMap {
         }
     }
 
-    public Double getMeteo () {
+    public Double getMeteo(String ville) {
 
-        Document docXML = wt.queryParam("mode", "xml").queryParam("q", "toulouse")
+        Document docXML = wt.queryParam("mode", "xml").queryParam("q", ville)
                 .request(MediaType.APPLICATION_XML).get(Document.class);
 
         XPath xPath =  XPathFactory.newInstance().newXPath();

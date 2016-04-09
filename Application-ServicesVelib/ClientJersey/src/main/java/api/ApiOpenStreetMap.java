@@ -48,6 +48,7 @@ public class ApiOpenStreetMap {
             return null;
         }
 
+
         XPath xPath =  XPathFactory.newInstance().newXPath();
 
         String lat = null;

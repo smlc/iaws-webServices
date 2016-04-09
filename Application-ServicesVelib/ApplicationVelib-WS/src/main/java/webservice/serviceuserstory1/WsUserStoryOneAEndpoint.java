@@ -1,5 +1,6 @@
 package webservice.serviceuserstory1;
 import domain.Station;
+import org.w3c.dom.Element;
 import services.MediateurService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,21 +30,12 @@ public class WsUserStoryOneAEndpoint {
         this.serviceApi = serviceApi;
     }
 
-   @PayloadRoot(localPart = "StationVideRequest",namespace = NAMESPACE_URI)
+   @PayloadRoot(localPart = "StationRequest",namespace = NAMESPACE_URI)
    @ResponsePayload
-   public JAXBElement<StationReponseType> getStation(@RequestPayload JAXBElement<StationRequestType> request){
+   public Element/*JAXBElement<StationReponseType> */ getStation(@RequestPayload JAXBElement<StationRequestType> request){
 
 
 
-       /*System.out.println(request.getValue().getNomRue());
-            StationReponseType reponse = new StationReponseType();
-
-            StationType stationType = new ObjectFactory().createStationType();
-       stationType.setAdresse("31 rue Valade");
-       stationType.setAvailableBikes("2");
-       stationType.setAvailableBikeStands("5");
-       stationType.setName("Station11");
-       reponse.setStation(stationType);*/
 
        /*Récuperation des valeur de la requeste*/
        StationRequestType requestClient = request.getValue();
@@ -54,14 +46,21 @@ public class WsUserStoryOneAEndpoint {
 
        //Récuperation des station non vides via les api.
        List<Station> listStation;
+
+       String chaineRequete = String.format("%s %s, %s, %s",
+               requestClient.getNumeroRue(),requestClient.getNomRue(), requestClient.getVille(),
+               requestClient.getCodePostal());
+
+
        if(requestClient.isRequeteStationNonVide()){
 
-           listStation = serviceApi.getStationsNonVides(requestClient.getVille());
+           listStation = serviceApi.getStationsNonVides(requestClient.getVille(),chaineRequete);
        }else{
-           listStation = serviceApi.getStationsNonCompletes(requestClient.getVille());
+           listStation = serviceApi.getStationsNonCompletes(requestClient.getVille(),chaineRequete);
        }
 
 
+       System.out.println("TESTTTTTTTTTTTT3" +listStation);
 
        //Construction de la réponse
        ObjectFactory factory = new ObjectFactory();
@@ -70,9 +69,12 @@ public class WsUserStoryOneAEndpoint {
        while(it.hasNext()){
            listStationReponse.getStation().add(factory.createStationType(it.next()));
        }
+
+       System.out.println("TESTTTTTTTTTTTT3" +listStationReponse);
        reponseClient.setStations(listStationReponse);
 
-       return factory.createStationReponse(reponseClient);
+       return factory.createElementStation(reponseClient);
+
     }
 
 

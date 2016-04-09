@@ -28,34 +28,34 @@ public class Mediateur implements MediateurService {
         this.jcDecaux = new ApiJCDecaux();
         this.openStreetMap = new ApiOpenStreetMap();
         this.arcGIS = new ApiArcGIS();
-        this.openWeatherMap = new ApiOpenWeatherMap();
+//        this.openWeatherMap = new ApiOpenWeatherMap();
 
         this.stationsNonVides = new ArrayList<>();
         this.stationsNonCompletes = new ArrayList<>();
     }
 
-    public Map<Station, Double> getStationsNonVides (String contract, String address) {
+    public List<Station> getStationsNonVides (String contract, String address) {
 
-        Map<Station, Double> threeStationsNotEmpty =  new HashMap<>();
+        List<Station> threeStationsNotEmpty =  new ArrayList<>();
         List<Station> stations = new ArrayList<>();
         stations.addAll(jcDecaux.getStation(contract));
         Coordonne positionAddressClient = openStreetMap.getLatLong(address);
 
         //Récupération des 3 stations non vides
-        threeStationsNotEmpty.putAll(arcGIS.getLengths(positionAddressClient, stations, true));
+        threeStationsNotEmpty.addAll(arcGIS.getLengths(positionAddressClient, stations, true));
 
         return threeStationsNotEmpty;
     }
 
-    public Map<Station, Double> getStationsNonCompletes (String contract, String address) {
+    public List<Station> getStationsNonCompletes (String contract, String address) {
 
-        Map<Station, Double> threeStationsNotFull =  new HashMap<>();
+        List<Station> threeStationsNotFull =  new ArrayList<>();
         List<Station> stations = new ArrayList<>();
         stations.addAll(jcDecaux.getStation(contract));
         Coordonne positionAddressClient = openStreetMap.getLatLong(address);
 
         //Récupération des 3 stations non complètes
-        threeStationsNotFull.putAll(arcGIS.getLengths(positionAddressClient, stations, false));
+        threeStationsNotFull.addAll(arcGIS.getLengths(positionAddressClient, stations, false));
 
         return threeStationsNotFull;
     }

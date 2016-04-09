@@ -1,20 +1,15 @@
 package webservice.serviceuserstory2;
 
-import domain.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import services.MediateurService;
-import webservice.serviceuserstory1.beanRequete.ObjectFactory;
 import webservice.serviceuserstory1.beanRequete.StationReponseType;
 import webservice.serviceuserstory1.beanRequete.StationRequestType;
-import webservice.serviceuserstory1.beanRequete.StationsType;
 
 import javax.xml.bind.JAXBElement;
-import java.util.Iterator;
-import java.util.List;
 
 
 /**
@@ -39,7 +34,7 @@ public class WsUserStoryTWOEndpoint {
    public JAXBElement<StationReponseType> getInfoChausser(@RequestPayload JAXBElement<StationRequestType> request){
 
 
-       return factory.createStationReponse(reponseClient);
+       return null;
     }
 
 
