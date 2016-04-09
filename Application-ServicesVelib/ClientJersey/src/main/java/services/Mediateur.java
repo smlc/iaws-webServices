@@ -28,7 +28,7 @@ public class Mediateur implements MediateurService {
         this.jcDecaux = new ApiJCDecaux();
         this.openStreetMap = new ApiOpenStreetMap();
         this.arcGIS = new ApiArcGIS();
-//        this.openWeatherMap = new ApiOpenWeatherMap();
+        this.openWeatherMap = new ApiOpenWeatherMap();
 
         this.stationsNonVides = new ArrayList<>();
         this.stationsNonCompletes = new ArrayList<>();
@@ -58,5 +58,19 @@ public class Mediateur implements MediateurService {
         threeStationsNotFull.addAll(arcGIS.getLengths(positionAddressClient, stations, false));
 
         return threeStationsNotFull;
+    }
+
+    @Override
+    public String getInfoChausser(String ville) {
+        Double quantitePluie = openWeatherMap.getMeteo(ville);
+        String risqueChausserMouiller = "";
+        if(quantitePluie== .0){
+            risqueChausserMouiller = "FAIBLE";
+        }else if (quantitePluie > 1.0 && quantitePluie <2.0){
+            risqueChausserMouiller = "MOYEN";
+        }else{
+            risqueChausserMouiller = "FORT";
+        }
+        return risqueChausserMouiller;
     }
 }

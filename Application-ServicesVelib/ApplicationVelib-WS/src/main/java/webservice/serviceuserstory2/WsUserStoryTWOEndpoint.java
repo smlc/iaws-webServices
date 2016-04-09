@@ -8,6 +8,8 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import services.MediateurService;
 import webservice.serviceuserstory1.beanRequete.StationReponseType;
 import webservice.serviceuserstory1.beanRequete.StationRequestType;
+import webservice.serviceuserstory2.beanRequeteUserStory2.EnumRisque;
+import webservice.serviceuserstory2.beanRequeteUserStory2.ReponseWS2;
 
 import javax.xml.bind.JAXBElement;
 
@@ -29,12 +31,22 @@ public class WsUserStoryTWOEndpoint {
         this.serviceApi = serviceApi;
     }
 
-   @PayloadRoot(localPart = "StationVideRequest",namespace = NAMESPACE_URI)
+   @PayloadRoot(localPart = "RequestWS2",namespace = NAMESPACE_URI)
    @ResponsePayload
-   public JAXBElement<StationReponseType> getInfoChausser(@RequestPayload JAXBElement<StationRequestType> request){
+   public ReponseWS2 getInfoChausser(@RequestPayload JAXBElement<StationRequestType> request){
 
 
-       return null;
+       /*Récuperation des valeur de la requeste*/
+       StationRequestType requestClient = request.getValue();
+
+       //Construction de l'address
+
+       String valeurRisqueChausser = serviceApi.getInfoChausser(requestClient.getVille());
+
+       ReponseWS2 reponseClient = new ReponseWS2();
+       reponseClient.setRisque(EnumRisque.fromValue(valeurRisqueChausser));
+
+       return reponseClient;
     }
 
 

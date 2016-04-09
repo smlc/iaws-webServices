@@ -13,4 +13,6 @@ public interface MediateurService {
     public List<Station> getStationsNonVides (String contract, String address);
 
     public List<Station> getStationsNonCompletes (String contract, String address);
+
+    public String getInfoChausser(String ville);
 }

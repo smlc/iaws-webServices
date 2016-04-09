@@ -1,5 +1,5 @@
 <stat:ReponseWS2 xmlns:stat="http://iaws/ws/contractfirst/station"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:schemaLocation="http://iaws/ws/contractfirst/station ReponseContract.xsd">
-  <stat:risque>FAIBLE</stat:risque>
+  <stat:risque>MOYEN</stat:risque>
 </stat:ReponseWS2>

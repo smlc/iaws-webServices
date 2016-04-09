@@ -60,7 +60,6 @@ public class WsUserStoryOneAEndpoint {
        }
 
 
-       System.out.println("TESTTTTTTTTTTTT3" +listStation);
 
        //Construction de la réponse
        ObjectFactory factory = new ObjectFactory();
@@ -70,7 +69,6 @@ public class WsUserStoryOneAEndpoint {
            listStationReponse.getStation().add(factory.createStationType(it.next()));
        }
 
-       System.out.println("TESTTTTTTTTTTTT3" +listStationReponse);
        reponseClient.setStations(listStationReponse);
 
        return factory.createElementStation(reponseClient);
