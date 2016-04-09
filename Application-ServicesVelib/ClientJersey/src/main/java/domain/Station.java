@@ -19,6 +19,9 @@ public class Station {
     private String name;
     private String address;
 
+
+    private Double distance;
+
     @JsonProperty("position")
     private Map<Object,Object> position;
 
@@ -74,6 +77,13 @@ public class Station {
 
     public void setAvailable_bike_stands(int available_bike_stands) {
         this.available_bike_stands = available_bike_stands;
+    }
+    public Double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Double distance) {
+        this.distance = distance;
     }
 
     public int getAvailable_bikes() {

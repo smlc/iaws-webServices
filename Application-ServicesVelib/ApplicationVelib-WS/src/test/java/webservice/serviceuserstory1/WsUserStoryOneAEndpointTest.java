@@ -17,6 +17,7 @@ import javax.xml.transform.stream.StreamSource;
 
 import static org.springframework.ws.test.server.RequestCreators.withPayload;
 import static org.springframework.ws.test.server.ResponseMatchers.payload;
+import static org.springframework.ws.test.server.ResponseMatchers.soapEnvelope;
 
 
 /**
@@ -38,8 +39,8 @@ public class WsUserStoryOneAEndpointTest {
 
     @Test
     public void getStationNonVides() throws Exception {
-        Source requestPayload = new StreamSource(new ClassPathResource("StationVideRequestSoap.xml").getInputStream());
-        Source responsePayload = new StreamSource(new ClassPathResource("StationReponseSoap.xml").getInputStream());
+        Source requestPayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory1/StationRequest.xml").getInputStream());
+        Source responsePayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory1/StationReponse.xml").getInputStream());
 
         mockClient.sendRequest(withPayload(requestPayload)).
                 andExpect(payload(responsePayload));

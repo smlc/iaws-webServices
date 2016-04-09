@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="adresse" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="available_bike_stands" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="available_bikes" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="distance" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,22 +31,25 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "stationType", namespace = "http://iaws/ws/contractfirst/stationReponse", propOrder = {
+@XmlType(name = "stationType", namespace = "http://iaws/ws/contractfirst/station", propOrder = {
     "name",
     "adresse",
     "availableBikeStands",
-    "availableBikes"
+    "availableBikes",
+    "distance"
 })
 public class StationType {
 
-    @XmlElement(namespace = "http://iaws/ws/contractfirst/stationReponse", required = true)
+    @XmlElement(namespace = "http://iaws/ws/contractfirst/station", required = true)
     protected String name;
-    @XmlElement(namespace = "http://iaws/ws/contractfirst/stationReponse", required = true)
+    @XmlElement(namespace = "http://iaws/ws/contractfirst/station", required = true)
     protected String adresse;
-    @XmlElement(name = "available_bike_stands", namespace = "http://iaws/ws/contractfirst/stationReponse", required = true)
+    @XmlElement(name = "available_bike_stands", namespace = "http://iaws/ws/contractfirst/station", required = true)
     protected String availableBikeStands;
-    @XmlElement(name = "available_bikes", namespace = "http://iaws/ws/contractfirst/stationReponse", required = true)
+    @XmlElement(name = "available_bikes", namespace = "http://iaws/ws/contractfirst/station", required = true)
     protected String availableBikes;
+    @XmlElement(namespace = "http://iaws/ws/contractfirst/station")
+    protected double distance;
 
     /**
      * Gets the value of the name property.
@@ -141,6 +145,22 @@ public class StationType {
      */
     public void setAvailableBikes(String value) {
         this.availableBikes = value;
+    }
+
+    /**
+     * Gets the value of the distance property.
+     * 
+     */
+    public double getDistance() {
+        return distance;
+    }
+
+    /**
+     * Sets the value of the distance property.
+     * 
+     */
+    public void setDistance(double value) {
+        this.distance = value;
     }
 
 }

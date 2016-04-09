@@ -3,10 +3,7 @@ package webservice.serviceuserstory1.beanRequete;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
@@ -28,13 +25,14 @@ import javax.xml.bind.annotation.XmlType;
  * 
  * 
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "StationsType", namespace = "http://iaws/ws/contractfirst/stationReponse", propOrder = {
+@XmlType(name = "StationsType", namespace = "http://iaws/ws/contractfirst/station", propOrder = {
     "station"
 })
 public class StationsType {
 
-    @XmlElement(namespace = "http://iaws/ws/contractfirst/stationReponse")
+    @XmlElement(name = "station",namespace = "http://iaws/ws/contractfirst/station")
     protected List<StationType> station;
 
     /**
