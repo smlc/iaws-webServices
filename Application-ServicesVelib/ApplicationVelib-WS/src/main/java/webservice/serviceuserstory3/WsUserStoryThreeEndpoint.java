@@ -10,6 +10,8 @@ import services.MediateurService;
 import webservice.serviceuserstory3.beanRequeteUserStory3.*;
 
 import javax.xml.bind.JAXBElement;
+import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.ws.Response;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,8 +34,30 @@ public class WsUserStoryThreeEndpoint {
 
     @PayloadRoot(localPart = "StationWs3Request",namespace = NAMESPACE_URI)
     @ResponsePayload
-    public JAXBElement<ResponseWs3Type> getTempsTrajet(@RequestPayload JAXBElement<ResponseWs3Type> request){
+    public JAXBElement<ResponseWs3Type> getTempsTrajet(@RequestPayload JAXBElement<RequestWs3Type> request){
 
+        // Récupération des valeurs de la requête
+        RequestWs3Type requestClient = request.getValue();
+
+        // Récupération des adresses
+        String requestAddressStart = String.format("%s %s, %s, %s",
+                requestClient.getAdresse().get(0).getNumeroRue(),
+                requestClient.getAdresse().get(0).getNomRue(),
+                requestClient.getAdresse().get(0).getVille(),
+                requestClient.getAdresse().get(0).getCodePostal());
+
+        String requestAddressArrival = String.format("%s %s, %s, %s",
+                requestClient.getAdresse().get(1).getNumeroRue(),
+                requestClient.getAdresse().get(1).getNomRue(),
+                requestClient.getAdresse().get(1).getVille(),
+                requestClient.getAdresse().get(1).getCodePostal());
+
+        XMLGregorianCalendar time = this.serviceApi.getTempsTrajet(requestAddressStart, requestAddressArrival);
+
+        // Création de la réponse qui sera envoyée au client
+        ResponseWs3Type responseClient = new ResponseWs3Type();
+
+        responseClient.setTime(time);
 
         return null;
     }

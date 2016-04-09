@@ -1,5 +1,5 @@
 
-package beanRequeteUserStory3;
+package webservice.serviceuserstory3.beanRequeteUserStory3;
 
 import java.util.ArrayList;
 import java.util.List;
