@@ -2,6 +2,7 @@ package services;
 
 import domain.Station;
 
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
@@ -15,4 +16,7 @@ public interface MediateurService {
     public List<Station> getStationsNonCompletes (String contract, String address);
 
     public String getInfoChausser(String ville);
+
+    public XMLGregorianCalendar getTempsTrajet (AdresseArriveeType address);
+
 }

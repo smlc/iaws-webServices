@@ -19,7 +19,6 @@ public class Station {
     private String name;
     private String address;
 
-
     private Double distance;
 
     @JsonProperty("position")
