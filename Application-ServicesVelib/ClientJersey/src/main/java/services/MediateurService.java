@@ -15,5 +15,5 @@ public interface MediateurService {
 
     public List<Station> getStationsNonCompletes (String contract, String address);
 
-    public XMLGregorianCalendar getTempsTrajet (AdresseArriveeType address);
+    //public XMLGregorianCalendar getTempsTrajet (AdresseArriveeType address);
 }

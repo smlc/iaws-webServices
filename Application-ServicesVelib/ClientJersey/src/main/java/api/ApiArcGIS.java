@@ -155,7 +155,7 @@ public class ApiArcGIS {
                     indexMin = i;
                 }
             }
-            candidateStations.get(indexMin).setDistance(distanceMin);
+            candidateStations.get(indexMin).setDistance(distanceMin*Math.pow(10, 3));
             threeStations.add(candidateStations.get(indexMin));
             stationList.remove(indexMin);
             candidateStations.remove(indexMin);
