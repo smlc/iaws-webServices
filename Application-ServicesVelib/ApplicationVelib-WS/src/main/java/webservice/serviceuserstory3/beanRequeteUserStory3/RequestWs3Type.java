@@ -65,5 +65,4 @@ public class RequestWs3Type {
         }
         return this.adresse;
     }
-
 }

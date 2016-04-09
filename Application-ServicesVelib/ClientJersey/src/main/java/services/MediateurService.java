@@ -17,6 +17,6 @@ public interface MediateurService {
 
     public String getInfoChausser(String ville);
 
-    public XMLGregorianCalendar getTempsTrajet (String addressStart, String addressArrival);
+    public String getTempsTrajet (String addressStart, String addressArrival);
 
 }

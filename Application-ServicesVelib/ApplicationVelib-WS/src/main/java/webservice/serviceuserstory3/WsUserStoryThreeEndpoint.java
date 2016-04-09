@@ -1,6 +1,5 @@
 package webservice.serviceuserstory3;
 
-import domain.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -10,10 +9,14 @@ import services.MediateurService;
 import webservice.serviceuserstory3.beanRequeteUserStory3.*;
 
 import javax.xml.bind.JAXBElement;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
-import javax.xml.ws.Response;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by lova on 09/04/16.
@@ -34,31 +37,59 @@ public class WsUserStoryThreeEndpoint {
 
     @PayloadRoot(localPart = "StationWs3Request",namespace = NAMESPACE_URI)
     @ResponsePayload
-    public JAXBElement<ResponseWs3Type> getTempsTrajet(@RequestPayload JAXBElement<RequestWs3Type> request){
+    public ResponseWs3Type getTempsTrajet(@RequestPayload JAXBElement<RequestWs3Type> request){
 
         // Récupération des valeurs de la requête
         RequestWs3Type requestClient = request.getValue();
 
         // Récupération des adresses
-        String requestAddressStart = String.format("%s %s, %s, %s",
-                requestClient.getAdresse().get(0).getNumeroRue(),
-                requestClient.getAdresse().get(0).getNomRue(),
-                requestClient.getAdresse().get(0).getVille(),
-                requestClient.getAdresse().get(0).getCodePostal());
+        Iterator<AdresseType>  it = requestClient.getAdresse().iterator();
+        AdresseType address;
+        String requestAddressStart = null;
+        String requestAddressArrival = null;
 
-        String requestAddressArrival = String.format("%s %s, %s, %s",
-                requestClient.getAdresse().get(1).getNumeroRue(),
-                requestClient.getAdresse().get(1).getNomRue(),
-                requestClient.getAdresse().get(1).getVille(),
-                requestClient.getAdresse().get(1).getCodePostal());
+        while(it.hasNext()){
+            address = it.next();
+            if (address.getAtt().equals("depart")) {
+                requestAddressStart = String.format("%s %s, %s, %s",
+                        address.getNumeroRue(),
+                        address.getNomRue(),
+                        address.getVille(),
+                        address.getCodePostal());
+            } else if (address.getAtt().equals("arrivee")) {
+                requestAddressArrival = String.format("%s %s, %s, %s",
+                        address.getNumeroRue(),
+                        address.getNomRue(),
+                        address.getVille(),
+                        address.getCodePostal());
+            }
+        }
 
-        XMLGregorianCalendar time = this.serviceApi.getTempsTrajet(requestAddressStart, requestAddressArrival);
+        String responseTime = this.serviceApi.getTempsTrajet(requestAddressStart, requestAddressArrival);
 
         // Création de la réponse qui sera envoyée au client
         ResponseWs3Type responseClient = new ResponseWs3Type();
 
-        responseClient.setTime(time);
+        // Construction de la réponse
+        XMLGregorianCalendar value = null;
+        Date date;
+        SimpleDateFormat simpleDateFormat;
+        GregorianCalendar gregorianCalendar;
 
-        return null;
+        simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+        try {
+            date = simpleDateFormat.parse(responseTime);
+            gregorianCalendar = (GregorianCalendar)GregorianCalendar.getInstance();
+            gregorianCalendar.setTime(date);
+            value = DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (DatatypeConfigurationException e) {
+            e.printStackTrace();
+        }
+
+        responseClient.setTime(value);
+
+        return responseClient;
     }
 }
