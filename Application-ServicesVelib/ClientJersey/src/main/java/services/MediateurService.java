@@ -2,9 +2,9 @@ package services;
 
 import domain.Station;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+
 import java.util.List;
-import java.util.Map;
+
 
 /**
  * Created by mars on 04/04/16.
@@ -17,6 +17,7 @@ public interface MediateurService {
 
     public String getInfoChausser(String ville);
 
-    public XMLGregorianCalendar getTempsTrajet (AdresseArriveeType address);
+    public String getTempsTrajet (String addressDepart,String addressArriver,String ville);
+
 
 }

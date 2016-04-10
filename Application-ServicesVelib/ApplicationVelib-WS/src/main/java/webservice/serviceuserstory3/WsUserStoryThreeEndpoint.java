@@ -7,7 +7,7 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import services.MediateurService;
-import webservice.serviceuserstory3.beanRequeteUserStory3.*;
+
 
 import javax.xml.bind.JAXBElement;
 import java.util.Iterator;
@@ -30,11 +30,11 @@ public class WsUserStoryThreeEndpoint {
         this.serviceApi = serviceApi;
     }
 
-    @PayloadRoot(localPart = "StationWs3Request",namespace = NAMESPACE_URI)
+    /*@PayloadRoot(localPart = "StationWs3Request",namespace = NAMESPACE_URI)
     @ResponsePayload
     public JAXBElement<ResponseWs3Type> getTempsTrajet(@RequestPayload JAXBElement<ResponseWs3Type> request){
 
 
         return null;
-    }
+    }*/
 }

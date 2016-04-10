@@ -25,7 +25,7 @@ public class ApiArcGIS {
     WebTarget wt;
     JsonObject object;
     int wkid;
-    private static String UriApi = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/Utilities/Geometry/GeometryServer/lengths?f=json";
+    private static String UriApi = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/Utilities/Geometry/GeometryServer?f=json";
 
     public ApiArcGIS () {
         wkid = 27563;
@@ -37,12 +37,7 @@ public class ApiArcGIS {
                 responseContext.getHeaders().put("Content-Type", contentType);
             }
         }).target(UriApi);
-        String jsonObjectString = wt.
-                request(MediaType.APPLICATION_JSON).get(String.class);
 
-        JsonReader jsonReader = Json.createReader(new StringReader(jsonObjectString));
-        object = jsonReader.readObject();
-        jsonReader.close();
     }
 
     public boolean isConnected () {
@@ -52,31 +47,32 @@ public class ApiArcGIS {
         return false;
     }
 
-    public double getDistance (Point pointFrom, Point pointTo) {
+    public double getDistance (Coordonne pointFrom, Coordonne pointTo) {
 
         MultivaluedMap<String, String> formData = new MultivaluedHashMap<String, String>();
 
         JsonObject jSongeometry1 = Json.createObjectBuilder()
                 .add("geometryType", "esriGeometryPoint")
                 .add("geometry", Json.createObjectBuilder()
-                        .add("x", pointFrom.getX())
-                        .add("y", pointFrom.getY()))
+                        .add("x", pointFrom.getLon())
+                        .add("y", pointFrom.getLat()))
                 .build();
 
         JsonObject jSongeometry2 = Json.createObjectBuilder()
                 .add("geometryType", "esriGeometryPoint")
                 .add("geometry", Json.createObjectBuilder()
-                        .add("x", pointFrom.getX())
-                        .add("y", pointFrom.getY()))
+                        .add("x", pointTo.getLon())
+                        .add("y", pointTo.getLat()))
                 .build();
 
         formData.putSingle("sr", this.wkid+"");
         formData.putSingle("geometry1", jSongeometry1.toString());
         formData.putSingle("geometry2", jSongeometry2.toString());
-        formData.putSingle("geodesic", "true");
-
-        System.out.println(wt.request(MediaType.APPLICATION_JSON).post(Entity.form(formData), JsonObject.class));
-        return 0.;
+        //formData.putSingle("geodesic", "true");
+        formData.putSingle("distanceUnit","9001");
+        JsonObject jSonObjectReponse = wt.path("distance").request(MediaType.APPLICATION_JSON).post(Entity.form(formData), JsonObject.class);
+        System.out.println("ArcGis: "+jSonObjectReponse.getJsonNumber("distance"));
+        return jSonObjectReponse.getJsonNumber("distance").doubleValue();
     }
 
     public List<Station> getLengths (Coordonne adressClient, List<Station> stations, boolean emptyOrFull) {
@@ -124,7 +120,7 @@ public class ApiArcGIS {
         formData.putSingle("polylines", polylines.toString());
         formData.putSingle("calculationType", "preserveShape");
 
-        JsonArray response = wt.request(MediaType.APPLICATION_JSON).post(Entity.form(formData), JsonObject.class)
+        JsonArray response = wt.path("lenght").request(MediaType.APPLICATION_JSON).post(Entity.form(formData), JsonObject.class)
                 .getJsonArray("lengths");
 
         threeStations.addAll(researchThreeLengthsMin(response, candidateStations));

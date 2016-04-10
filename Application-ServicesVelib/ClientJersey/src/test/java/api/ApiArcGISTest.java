@@ -1,20 +1,15 @@
-package groupId;
+package api;
 
 
 import api.ApiArcGIS;
 
 import domain.Coordonne;
-import domain.Station;
 import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -36,10 +31,11 @@ public class ApiArcGISTest {
 
         //Given
         ApiArcGIS api = new ApiArcGIS();
-        Point pointFrom = new Point();
-        pointFrom.setLocation(-115, 36);
-        Point pointTo = new Point();
-        pointTo.setLocation(-115, 36);
+        Coordonne pointFrom = new Coordonne(-115,36);
+
+        Coordonne pointTo = new Coordonne(-115,36);
+
+
 
         //When
         double distance = api.getDistance(pointFrom, pointTo);

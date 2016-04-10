@@ -1,4 +1,4 @@
-package groupId;
+package api;
 
 import api.ApiOpenWeatherMap;
 import org.junit.Test;

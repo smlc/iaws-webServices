@@ -1,8 +1,7 @@
-package groupId;
+package api;
 
 import api.ApiJCDecaux;
 import domain.Station;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;

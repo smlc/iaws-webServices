@@ -1,4 +1,4 @@
-package groupId;
+package api;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

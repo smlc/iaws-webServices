@@ -7,10 +7,12 @@ import api.ApiOpenWeatherMap;
 import domain.Coordonne;
 import domain.Station;
 
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by mars on 03/04/16.
@@ -23,7 +25,7 @@ public class Mediateur implements MediateurService {
     private ApiOpenWeatherMap openWeatherMap;
     private List<Station> stationsNonVides;
     private List<Station> stationsNonCompletes;
-
+    private static Double vitessePietonEnKm = 4.799;
     public Mediateur () {
         this.jcDecaux = new ApiJCDecaux();
         this.openStreetMap = new ApiOpenStreetMap();
@@ -73,4 +75,44 @@ public class Mediateur implements MediateurService {
         }
         return risqueChausserMouiller;
     }
+
+
+    public String getTempsTrajet (String addressDepart, String addressArriver,String ville){
+
+        Coordonne coordonneAddressDepart = openStreetMap.getLatLong(addressDepart);
+        Coordonne coordonneAddressArrive = openStreetMap.getLatLong(addressArriver);
+        Double distanceEntreDepartArriver = arcGIS.getDistance(coordonneAddressDepart,coordonneAddressArrive);
+
+        //t=D/V*
+        //v = 3,6 km/h
+        //vitesse pieton google = 4.799
+        String tempsTrajet = calculTempsTrajet(distanceEntreDepartArriver,ville);
+        return tempsTrajet;
+    }
+
+    private String calculTempsTrajet(Double distanceAParcourir,String ville){
+
+        System.out.println("Distance :"+distanceAParcourir);
+        Double tempsEnHeure = distanceAParcourir / vitessePietonEnKm;
+
+        Double quantitePluie = openWeatherMap.getMeteo(ville);
+        Double tempEnPlus;
+        if(quantitePluie > 1.0 && quantitePluie <2.0){
+            //+5 minutes
+            tempEnPlus = 10.0/60.0;
+        }else{
+            //+15 minutes
+            tempEnPlus = 15.0/60.0;
+        }
+
+        tempsEnHeure = tempsEnHeure + tempEnPlus;
+        int heure = (int) TimeUnit.HOURS.toHours(Double.doubleToRawLongBits(tempsEnHeure));
+
+        int minute = (tempsEnHeure.intValue() % 1)*60;
+
+        int seconde = (minute%1)*60;
+
+        return String.format(" %1$d: %2$d: %1$d",heure,minute,seconde);
+    }
+
 }
