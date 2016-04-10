@@ -17,6 +17,7 @@ public interface MediateurService {
 
     public String getInfoChausser(String ville);
 
+
     public String getTempsTrajet (String addressDepart,String addressArriver,String ville);
 
 

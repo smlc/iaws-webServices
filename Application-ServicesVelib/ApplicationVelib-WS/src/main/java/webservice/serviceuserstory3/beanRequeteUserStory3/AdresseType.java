@@ -1,5 +1,5 @@
 
-package beanRequeteUserStory3;
+package webservice.serviceuserstory3.beanRequeteUserStory3;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

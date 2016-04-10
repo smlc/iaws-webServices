@@ -1,10 +1,12 @@
 
-package beanRequeteUserStory3;
+package webservice.serviceuserstory3.beanRequeteUserStory3;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -17,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="time" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="time" type="{http://www.w3.org/2001/XMLSchema}time"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,17 +35,18 @@ import javax.xml.bind.annotation.XmlType;
 public class ResponseWs3Type {
 
     @XmlElement(namespace = "http://iaws/ws/contractfirst/station", required = true)
-    protected String time;
+    @XmlSchemaType(name = "time")
+    protected XMLGregorianCalendar time;
 
     /**
      * Gets the value of the time property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public String getTime() {
+    public XMLGregorianCalendar getTime() {
         return time;
     }
 
@@ -52,10 +55,10 @@ public class ResponseWs3Type {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setTime(String value) {
+    public void setTime(XMLGregorianCalendar value) {
         this.time = value;
     }
 

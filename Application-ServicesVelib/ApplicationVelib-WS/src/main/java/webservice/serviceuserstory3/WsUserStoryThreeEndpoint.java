@@ -1,6 +1,5 @@
 package webservice.serviceuserstory3;
 
-import domain.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -10,8 +9,14 @@ import services.MediateurService;
 
 
 import javax.xml.bind.JAXBElement;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by lova on 09/04/16.
@@ -32,9 +37,61 @@ public class WsUserStoryThreeEndpoint {
 
     /*@PayloadRoot(localPart = "StationWs3Request",namespace = NAMESPACE_URI)
     @ResponsePayload
-    public JAXBElement<ResponseWs3Type> getTempsTrajet(@RequestPayload JAXBElement<ResponseWs3Type> request){
+    public ResponseWs3Type getTempsTrajet(@RequestPayload JAXBElement<RequestWs3Type> request){
+
+        // Récupération des valeurs de la requête
+        RequestWs3Type requestClient = request.getValue();
 
 
-        return null;
-    }*/
+        // Récupération des adresses
+        Iterator<AdresseType>  it = requestClient.getAdresse().iterator();
+        AdresseType address;
+        String requestAddressStart = null;
+        String requestAddressArrival = null;
+
+        while(it.hasNext()){
+            address = it.next();
+            if (address.getAtt().equals("depart")) {
+                requestAddressStart = String.format("%s %s, %s, %s",
+                        address.getNumeroRue(),
+                        address.getNomRue(),
+                        address.getVille(),
+                        address.getCodePostal());
+            } else if (address.getAtt().equals("arrivee")) {
+                requestAddressArrival = String.format("%s %s, %s, %s",
+                        address.getNumeroRue(),
+                        address.getNomRue(),
+                        address.getVille(),
+                        address.getCodePostal());
+            }
+        }
+
+        String responseTime = this.serviceApi.getTempsTrajet(requestAddressStart, requestAddressArrival);
+
+        // Création de la réponse qui sera envoyée au client
+        ResponseWs3Type responseClient = new ResponseWs3Type();
+
+        // Construction de la réponse
+        XMLGregorianCalendar value = null;
+        Date date;
+        SimpleDateFormat simpleDateFormat;
+        GregorianCalendar gregorianCalendar;
+
+        simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+        try {
+            date = simpleDateFormat.parse(responseTime);
+            gregorianCalendar = (GregorianCalendar)GregorianCalendar.getInstance();
+            gregorianCalendar.setTime(date);
+            value = DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (DatatypeConfigurationException e) {
+            e.printStackTrace();
+        }
+
+        responseClient.setTime(value);
+
+        return responseClient;
+    }
+*/
 }
