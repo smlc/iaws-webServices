@@ -28,7 +28,7 @@ public class ApiArcGIS {
     private static String UriApi = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/Utilities/Geometry/GeometryServer?f=json";
 
     public ApiArcGIS () {
-        wkid = 27563;
+        wkid = 4326;
         wt = ClientBuilder.newClient().register(new ClientResponseFilter() {
 
             public void filter(ClientRequestContext clientRequestContext, ClientResponseContext responseContext) throws IOException {
@@ -68,8 +68,9 @@ public class ApiArcGIS {
         formData.putSingle("sr", this.wkid+"");
         formData.putSingle("geometry1", jSongeometry1.toString());
         formData.putSingle("geometry2", jSongeometry2.toString());
-        //formData.putSingle("geodesic", "true");
-        formData.putSingle("distanceUnit","9001");
+        formData.putSingle("geodesic", "true");
+        formData.putSingle("distanceUnit","9036");
+
         JsonObject jSonObjectReponse = wt.path("distance").request(MediaType.APPLICATION_JSON).post(Entity.form(formData), JsonObject.class);
         System.out.println("ArcGis: "+jSonObjectReponse.getJsonNumber("distance"));
         return jSonObjectReponse.getJsonNumber("distance").doubleValue();

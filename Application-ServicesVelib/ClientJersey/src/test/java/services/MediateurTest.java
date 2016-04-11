@@ -15,9 +15,9 @@ public class MediateurTest {
         MediateurService serviceApi = new Mediateur();
 
         //When
-        String tempsTrajet = serviceApi.getTempsTrajet("31 Rue valade,Toulouse, 31000","72 Rue du Poids de l'Huile,Toulouse, 31000","Toulouse");
+        String tempsTrajet = serviceApi.getTempsTrajet("31 Rue valade,Toulouse, 31000","16 Allées du Président Franklin Roosevelt,Toulouse , 31000","Toulouse");
 
         //Then
-        assertEquals("00:10:00",tempsTrajet);
+        assertEquals(" 0: 11: 20",tempsTrajet);
     }
 }

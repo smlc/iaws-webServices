@@ -25,7 +25,7 @@ public class Mediateur implements MediateurService {
     private ApiOpenWeatherMap openWeatherMap;
     private List<Station> stationsNonVides;
     private List<Station> stationsNonCompletes;
-    private static Double vitessePietonEnKm = 4.799;
+    private  Double vitessePietonEnKm = 4.799;
     public Mediateur () {
         this.jcDecaux = new ApiJCDecaux();
         this.openStreetMap = new ApiOpenStreetMap();
@@ -98,21 +98,26 @@ public class Mediateur implements MediateurService {
         Double quantitePluie = openWeatherMap.getMeteo(ville);
         Double tempEnPlus;
         if(quantitePluie > 1.0 && quantitePluie <2.0){
-            //+5 minutes
-            tempEnPlus = 10.0/60.0;
-        }else{
-            //+15 minutes
-            tempEnPlus = 15.0/60.0;
+            //+- 1km
+            tempsEnHeure = distanceAParcourir / (vitessePietonEnKm-1);
+        }else if (quantitePluie>2.0){
+            //vitesse pieton divisé par deux
+            tempsEnHeure = distanceAParcourir / (vitessePietonEnKm/2);
         }
 
-        tempsEnHeure = tempsEnHeure + tempEnPlus;
-        int heure = (int) TimeUnit.HOURS.toHours(Double.doubleToRawLongBits(tempsEnHeure));
+        System.out.println("temps en minute :" +(tempsEnHeure*60));
+        int heure = tempsEnHeure.intValue();
 
-        int minute = (tempsEnHeure.intValue() % 1)*60;
+        double minute = (tempsEnHeure % 1.0) * 60;
 
-        int seconde = (minute%1)*60;
+        double seconde = (minute%1)*60;
 
-        return String.format(" %1$d: %2$d: %1$d",heure,minute,seconde);
+        return String.format(" %1$d: %2$d: %3$d",heure, ((int) minute), ((int) seconde));
+
     }
 
+
+    public String getTempsTrajetVelo(String addressDepart,String addressArriver,String ville){
+        return "";
+    }
 }

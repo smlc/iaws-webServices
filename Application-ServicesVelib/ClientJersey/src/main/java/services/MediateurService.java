@@ -20,5 +20,6 @@ public interface MediateurService {
 
     public String getTempsTrajet (String addressDepart,String addressArriver,String ville);
 
+    public String getTempsTrajetVelo(String addressDepart,String addressArriver,String ville);
 
 }

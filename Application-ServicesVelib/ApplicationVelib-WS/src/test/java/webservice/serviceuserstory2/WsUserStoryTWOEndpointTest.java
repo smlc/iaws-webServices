@@ -1,4 +1,4 @@
-package webservices.serviceuserstory2;
+package webservice.serviceuserstory2;
 
 
 import org.junit.Before;
