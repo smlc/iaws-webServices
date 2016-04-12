@@ -6,6 +6,10 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import services.MediateurService;
+import webservice.serviceuserstory3.beanRequeteUserStory3.AdresseType;
+import webservice.serviceuserstory3.beanRequeteUserStory3.ObjectFactory;
+import webservice.serviceuserstory3.beanRequeteUserStory3.RequestWs3Type;
+import webservice.serviceuserstory3.beanRequeteUserStory3.ResponseWs3Type;
 
 
 import javax.xml.bind.JAXBElement;
@@ -35,9 +39,9 @@ public class WsUserStoryThreeEndpoint {
         this.serviceApi = serviceApi;
     }
 
-    /*@PayloadRoot(localPart = "StationWs3Request",namespace = NAMESPACE_URI)
+    @PayloadRoot(localPart = "RequestWs3",namespace = NAMESPACE_URI)
     @ResponsePayload
-    public ResponseWs3Type getTempsTrajet(@RequestPayload JAXBElement<RequestWs3Type> request){
+    public JAXBElement<ResponseWs3Type> getTempsTrajet(@RequestPayload JAXBElement<RequestWs3Type> request){
 
         // Récupération des valeurs de la requête
         RequestWs3Type requestClient = request.getValue();
@@ -52,13 +56,13 @@ public class WsUserStoryThreeEndpoint {
         while(it.hasNext()){
             address = it.next();
             if (address.getAtt().equals("depart")) {
-                requestAddressStart = String.format("%s %s, %s, %s",
+                requestAddressStart = String.format("%s, %s, %s, %s",
                         address.getNumeroRue(),
                         address.getNomRue(),
                         address.getVille(),
                         address.getCodePostal());
             } else if (address.getAtt().equals("arrivee")) {
-                requestAddressArrival = String.format("%s %s, %s, %s",
+                requestAddressArrival = String.format("%s, %s, %s, %s",
                         address.getNumeroRue(),
                         address.getNomRue(),
                         address.getVille(),
@@ -66,32 +70,13 @@ public class WsUserStoryThreeEndpoint {
             }
         }
 
-        String responseTime = this.serviceApi.getTempsTrajet(requestAddressStart, requestAddressArrival);
+        String responseTime = this.serviceApi.getTempsTrajet(requestAddressStart, requestAddressArrival,
+                requestClient.getAdresse().get(0).getVille());
 
         // Création de la réponse qui sera envoyée au client
         ResponseWs3Type responseClient = new ResponseWs3Type();
+        responseClient.setTime(responseTime);
 
-        // Construction de la réponse
-        XMLGregorianCalendar value = null;
-        Date date;
-        SimpleDateFormat simpleDateFormat;
-        GregorianCalendar gregorianCalendar;
-
-        simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-        try {
-            date = simpleDateFormat.parse(responseTime);
-            gregorianCalendar = (GregorianCalendar)GregorianCalendar.getInstance();
-            gregorianCalendar.setTime(date);
-            value = DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (DatatypeConfigurationException e) {
-            e.printStackTrace();
-        }
-
-        responseClient.setTime(value);
-
-        return responseClient;
+        return new ObjectFactory().createResponseWs3(responseClient);
     }
-*/
 }

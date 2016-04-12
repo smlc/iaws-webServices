@@ -35,30 +35,29 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class ResponseWs3Type {
 
     @XmlElement(namespace = "http://iaws/ws/contractfirst/station", required = true)
-    @XmlSchemaType(name = "time")
-    protected XMLGregorianCalendar time;
+    protected String time;
 
     /**
      * Gets the value of the time property.
-     * 
+     *
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *     {@link String }
+     *
      */
-    public XMLGregorianCalendar getTime() {
+    public String getTime() {
         return time;
     }
 
     /**
      * Sets the value of the time property.
-     * 
+     *
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *     {@link String }
+     *
      */
-    public void setTime(XMLGregorianCalendar value) {
+    public void setTime(String value) {
         this.time = value;
     }
 

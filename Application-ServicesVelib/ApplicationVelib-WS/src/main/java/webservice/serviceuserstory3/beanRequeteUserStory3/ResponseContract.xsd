@@ -3,7 +3,7 @@
   <xs:element name="ResponseWs3" type="stat:ResponseWs3Type" xmlns:stat="http://iaws/ws/contractfirst/station"/>
   <xs:complexType name="ResponseWs3Type">
     <xs:sequence>
-      <xs:element type="xs:time" name="time"/>
+      <xs:element type="xs:string" name="time"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
