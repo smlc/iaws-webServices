@@ -31,17 +31,15 @@ public class ApiArcGISTest {
 
         //Given
         ApiArcGIS api = new ApiArcGIS();
-        Coordonne pointFrom = new Coordonne(-115,36);
+        Coordonne pointFrom = new Coordonne(115,36);
 
-        Coordonne pointTo = new Coordonne(-115,36);
-
-
+        Coordonne pointTo = new Coordonne(120,50);
 
         //When
-        double distance = api.getDistance(pointFrom, pointTo);
+        double distance = api.getDistance(pointFrom,pointTo);
 
         //Then
-        Assert.assertEquals(0, distance, 0);
+        assertEquals(0,distance);
     }
 
     @Test
