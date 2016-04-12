@@ -69,7 +69,7 @@ public class ApiArcGIS {
         formData.putSingle("geometry1", jSongeometry1.toString());
         formData.putSingle("geometry2", jSongeometry2.toString());
         formData.putSingle("geodesic", "true");
-        formData.putSingle("distanceUnit","9036");
+        formData.putSingle("distanceUnit","9036"); //9036 = Km
 
         JsonObject jSonObjectReponse = wt.path("distance").request(MediaType.APPLICATION_JSON).post(Entity.form(formData), JsonObject.class);
         System.out.println("ArcGis: "+jSonObjectReponse.getJsonNumber("distance"));
@@ -152,7 +152,7 @@ public class ApiArcGIS {
                     indexMin = i;
                 }
             }
-            candidateStations.get(indexMin).setDistance(distanceMin*Math.pow(10, 3));
+            candidateStations.get(indexMin).setDistance(distanceMin);
             threeStations.add(candidateStations.get(indexMin));
             stationList.remove(indexMin);
             candidateStations.remove(indexMin);

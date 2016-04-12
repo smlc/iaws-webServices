@@ -25,7 +25,9 @@ public class Mediateur implements MediateurService {
     private ApiOpenWeatherMap openWeatherMap;
     private List<Station> stationsNonVides;
     private List<Station> stationsNonCompletes;
-    private  Double vitessePietonEnKm = 4.799;
+    private  Double vitessePietonEnKm = 3.9393;
+
+
     public Mediateur () {
         this.jcDecaux = new ApiJCDecaux();
         this.openStreetMap = new ApiOpenStreetMap();
@@ -112,11 +114,29 @@ public class Mediateur implements MediateurService {
 
         double seconde = (minute%1)*60;
 
-        return String.format(" %1$d: %2$d: %3$d",heure, ((int) minute), ((int) seconde));
+        System.out.println("minuteDouble "+minute+" secondeDouble "+ seconde);
+        return formatTemps(heure, (int)minute,(int)seconde);
 
     }
 
+    private String formatTemps(int heure,int minute,int seconde){
 
+        String heureString = heure+"";
+        String minuteString = minute+"";
+        String secondeString = seconde +"";
+
+        if(heure < 10 ){
+            heureString = "0"+heureString;
+        }
+        if (minute < 10){
+            minuteString = "0"+minute;
+        }
+        if(seconde < 10){
+            secondeString = "0"+seconde;
+        }
+
+        return String.format("%s:%s:%s",heureString,minuteString , secondeString);
+    }
     public String getTempsTrajetVelo(String addressDepart,String addressArriver,String ville){
         return "";
     }

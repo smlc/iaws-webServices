@@ -47,7 +47,7 @@ public class WsUserStoryOneAEndpoint {
        //Récuperation des station non vides via les api.
        List<Station> listStation;
 
-       String chaineRequete = String.format("%s %s, %s, %s",
+       String chaineRequete = String.format("%s, %s, %s, %s",
                requestClient.getNumeroRue(),requestClient.getNomRue(), requestClient.getVille(),
                requestClient.getCodePostal());
 
