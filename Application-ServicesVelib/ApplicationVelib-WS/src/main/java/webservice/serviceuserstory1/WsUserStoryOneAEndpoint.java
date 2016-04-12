@@ -46,21 +46,21 @@ public class WsUserStoryOneAEndpoint {
 
        //Récuperation des station non vides via les api.
        List<Station> listStation;
-
+       System.out.println("Test 1");
        String chaineRequete = String.format("%s, %s, %s, %s",
                requestClient.getNumeroRue(),requestClient.getNomRue(), requestClient.getVille(),
                requestClient.getCodePostal());
 
 
        if(requestClient.isRequeteStationNonVide()){
-
+           System.out.println("Test 2");
            listStation = serviceApi.getStationsNonVides(requestClient.getVille(),chaineRequete);
        }else{
            listStation = serviceApi.getStationsNonCompletes(requestClient.getVille(),chaineRequete);
        }
 
 
-
+       System.out.println("Test 3");
        //Construction de la réponse
        ObjectFactory factory = new ObjectFactory();
        Iterator<Station>  it = listStation.iterator();

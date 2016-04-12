@@ -121,7 +121,7 @@ public class ApiArcGIS {
         formData.putSingle("polylines", polylines.toString());
         formData.putSingle("calculationType", "preserveShape");
 
-        JsonArray response = wt.path("lenght").request(MediaType.APPLICATION_JSON).post(Entity.form(formData), JsonObject.class)
+        JsonArray response = wt.path("lengths").request(MediaType.APPLICATION_JSON).post(Entity.form(formData), JsonObject.class)
                 .getJsonArray("lengths");
 
         threeStations.addAll(researchThreeLengthsMin(response, candidateStations));

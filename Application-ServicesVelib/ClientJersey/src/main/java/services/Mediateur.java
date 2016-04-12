@@ -6,13 +6,10 @@ import api.ApiOpenStreetMap;
 import api.ApiOpenWeatherMap;
 import domain.Coordonne;
 import domain.Station;
+import domain.Temps;
 
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by mars on 03/04/16.
@@ -26,6 +23,7 @@ public class Mediateur implements MediateurService {
     private List<Station> stationsNonVides;
     private List<Station> stationsNonCompletes;
     private  Double vitessePietonEnKm = 3.9393;
+    private Double vitesseCyclisteEnKm = 16.25;
 
 
     public Mediateur () {
@@ -88,14 +86,14 @@ public class Mediateur implements MediateurService {
         //t=D/V*
         //v = 3,6 km/h
         //vitesse pieton google = 4.799
-        String tempsTrajet = calculTempsTrajet(distanceEntreDepartArriver,ville);
-        return tempsTrajet;
+        Temps tempsTrajet = calculTempsTrajet(distanceEntreDepartArriver,ville,vitessePietonEnKm );
+        return formatTemps(tempsTrajet.getHeure(),tempsTrajet.getMinute(),tempsTrajet.getSeconde());
     }
 
-    private String calculTempsTrajet(Double distanceAParcourir,String ville){
+    private Temps calculTempsTrajet(Double distanceAParcourir, String ville, double vitesseDeplacement){
 
         System.out.println("Distance :"+distanceAParcourir);
-        Double tempsEnHeure = distanceAParcourir / vitessePietonEnKm;
+        Double tempsEnHeure = distanceAParcourir / vitesseDeplacement;
 
         Double quantitePluie = openWeatherMap.getMeteo(ville);
         Double tempEnPlus;
@@ -115,7 +113,7 @@ public class Mediateur implements MediateurService {
         double seconde = (minute%1)*60;
 
         System.out.println("minuteDouble "+minute+" secondeDouble "+ seconde);
-        return formatTemps(heure, (int)minute,(int)seconde);
+        return new Temps(heure, (int)minute,(int)seconde);
 
     }
 
@@ -138,6 +136,46 @@ public class Mediateur implements MediateurService {
         return String.format("%s:%s:%s",heureString,minuteString , secondeString);
     }
     public String getTempsTrajetVelo(String addressDepart,String addressArriver,String ville){
-        return "";
+
+        //Station plus proches addresse
+        Station stationNonVidePlusProcheDepart =getStationsNonVides(ville,addressDepart).get(0);
+        Station stationNonCompletePlusProcheArriver = getStationsNonCompletes(ville,addressArriver).get(0);
+
+
+        //Calcule temps trajet entre addresse départ et station non vide le plus proche
+
+       
+        Coordonne coordonneAddressDepart = openStreetMap.getLatLong(addressDepart);
+        Coordonne coordonneStationDepart = new Coordonne((double)stationNonVidePlusProcheDepart.getPosition().get("lat"),
+                (double)stationNonVidePlusProcheDepart.getPosition().get("lng")  );
+        Double distanceEntreAddresseDepartStationDepart = arcGIS.getDistance(coordonneAddressDepart,coordonneStationDepart);
+
+        
+        Temps tempsTrajetVersStationDepart = calculTempsTrajet(distanceEntreAddresseDepartStationDepart,ville,vitessePietonEnKm);
+
+        //Calcule temps trajet entre station depart et station arrivé
+        Coordonne coordonneStationArriver = new Coordonne((double)stationNonCompletePlusProcheArriver.getPosition().get("lat"),
+                (double)stationNonCompletePlusProcheArriver.getPosition().get("lng")  );
+       
+        Double distanceEntreStationDepartStationArriver = arcGIS.getDistance(coordonneStationDepart,coordonneStationArriver);
+
+        //Temps trajet vers la stion arriver avec incidence météo
+        Temps tempsTrajetVersStationArriver = calculTempsTrajet(distanceEntreStationDepartStationArriver,ville,vitesseCyclisteEnKm);
+
+
+        //Calcule temps trajet entre station arriver et addresse arriver
+        Coordonne coordonneAdresseArriver = openStreetMap.getLatLong(addressArriver);
+        Double distanceEntreStationArriverAddresseArriver = arcGIS.getDistance(coordonneStationArriver,coordonneAdresseArriver);
+
+        //Temps trajet vers l'adresse arriver avec incidence météo
+        Temps tempsTrajetVersAddresseArriver = calculTempsTrajet(distanceEntreStationArriverAddresseArriver,ville,vitessePietonEnKm);
+
+
+        Temps tempsTrajetTotal = tempsTrajetVersStationDepart.sommeTemps(tempsTrajetVersStationArriver).sommeTemps(tempsTrajetVersAddresseArriver);
+
+        return formatTemps(tempsTrajetTotal.getHeure(),tempsTrajetTotal.getMinute(),tempsTrajetTotal.getSeconde());
     }
+
+
+
 }
