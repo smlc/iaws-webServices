@@ -1,4 +1,4 @@
-<RequestWs3 xmlns="http://iaws/ws/contractfirst/station"
+<RequestWs3 requeteTempsAPied="true" xmlns="http://iaws/ws/contractfirst/station"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://iaws/ws/contractfirst/station RequestContract.xsd" >
     <adresse att="depart">

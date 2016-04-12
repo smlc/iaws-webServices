@@ -3,7 +3,14 @@
   <xs:element name="RequestWs3" type="stat:RequestWs3Type" xmlns:stat="http://iaws/ws/contractfirst/station"/>
   <xs:complexType name="adresseType">
     <xs:sequence>
-      <xs:element type="xs:string" name="numeroRue"/>
+      <xs:element name="numeroRue">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="31"/>
+            <xs:enumeration value="38"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
       <xs:element type="xs:string" name="nomRue"/>
       <xs:element type="xs:string" name="codePostal"/>
       <xs:element type="xs:string" name="ville"/>
@@ -14,5 +21,6 @@
     <xs:sequence>
       <xs:element type="stat:adresseType" name="adresse" maxOccurs="unbounded" minOccurs="0" xmlns:stat="http://iaws/ws/contractfirst/station"/>
     </xs:sequence>
+    <xs:attribute type="xs:boolean" name="requeteTempsAPied"/>
   </xs:complexType>
 </xs:schema>

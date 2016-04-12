@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -21,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="adresse" type="{http://iaws/ws/contractfirst/station}adresseType" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
+ *       &lt;attribute name="requeteTempsAPied" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -36,6 +38,8 @@ public class RequestWs3Type {
 
     @XmlElement(namespace = "http://iaws/ws/contractfirst/station")
     protected List<AdresseType> adresse;
+    @XmlAttribute(name = "requeteTempsAPied")
+    protected Boolean requeteTempsAPied;
 
     /**
      * Gets the value of the adresse property.
@@ -65,4 +69,29 @@ public class RequestWs3Type {
         }
         return this.adresse;
     }
+
+    /**
+     * Gets the value of the requeteTempsAPied property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isRequeteTempsAPied() {
+        return requeteTempsAPied;
+    }
+
+    /**
+     * Sets the value of the requeteTempsAPied property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setRequeteTempsAPied(Boolean value) {
+        this.requeteTempsAPied = value;
+    }
+
 }

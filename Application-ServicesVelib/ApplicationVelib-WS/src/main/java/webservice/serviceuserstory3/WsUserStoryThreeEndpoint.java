@@ -13,13 +13,6 @@ import webservice.serviceuserstory3.beanRequeteUserStory3.ResponseWs3Type;
 
 
 import javax.xml.bind.JAXBElement;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 
 /**
@@ -52,6 +45,7 @@ public class WsUserStoryThreeEndpoint {
         AdresseType address;
         String requestAddressStart = null;
         String requestAddressArrival = null;
+        String responseTime = null;
 
         while(it.hasNext()){
             address = it.next();
@@ -70,8 +64,13 @@ public class WsUserStoryThreeEndpoint {
             }
         }
 
-        String responseTime = this.serviceApi.getTempsTrajet(requestAddressStart, requestAddressArrival,
-                requestClient.getAdresse().get(0).getVille());
+        if (requestClient.isRequeteTempsAPied()) {
+            responseTime = this.serviceApi.getTempsTrajet(requestAddressStart, requestAddressArrival,
+                    requestClient.getAdresse().get(0).getVille());
+        } else {
+            responseTime = this.serviceApi.getTempsTrajetVelo(requestAddressStart, requestAddressArrival,
+                    requestClient.getAdresse().get(0).getVille());
+        }
 
         // Création de la réponse qui sera envoyée au client
         ResponseWs3Type responseClient = new ResponseWs3Type();
