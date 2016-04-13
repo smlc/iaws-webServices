@@ -37,7 +37,6 @@ public class ApiArcGIS {
                 responseContext.getHeaders().put("Content-Type", contentType);
             }
         }).target(UriApi);
-
     }
 
     public boolean isConnected () {
