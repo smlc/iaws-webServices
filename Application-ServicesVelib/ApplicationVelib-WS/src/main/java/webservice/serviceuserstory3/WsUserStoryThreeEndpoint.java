@@ -33,7 +33,7 @@ public class WsUserStoryThreeEndpoint {
 
     @PayloadRoot(localPart = "RequestWs3",namespace = NAMESPACE_URI)
     @ResponsePayload
-    public JAXBElement<ResponseWs3Type> getTempsTrajet(@RequestPayload JAXBElement<RequestWs3Type> request){
+    public JAXBElement<ResponseWs3Type> getTempsTrajet (@RequestPayload JAXBElement<RequestWs3Type> request) {
 
         // Récupération des valeurs de la requête
         RequestWs3Type requestClient = request.getValue();

@@ -29,21 +29,18 @@ public class WsUserStoryTWOEndpoint {
 
    @PayloadRoot(localPart = "RequestWS2",namespace = NAMESPACE_URI)
    @ResponsePayload
-   public ReponseWS2 getInfoChausser(@RequestPayload StationRequestType request){
+   public ReponseWS2 getInfoChaussee (@RequestPayload StationRequestType request) {
 
 
-       /*Récuperation des valeur de la requeste*/
-      // StationRequestType requestClient = request.;
+       // Récuperation des valeurs de la requête
+       // StationRequestType requestClient = request.;
 
-       //Construction de l'address
-
-       String valeurRisqueChausser = serviceApi.getInfoChaussee(request.getVille());
+       //Construction de l'adresse
+       String valeurRisqueChaussee = serviceApi.getInfoChaussee(request.getVille());
 
        ReponseWS2 reponseClient = new ReponseWS2();
-       reponseClient.setRisque(EnumRisque.fromValue(valeurRisqueChausser));
+       reponseClient.setRisque(EnumRisque.fromValue(valeurRisqueChaussee));
 
        return reponseClient;
     }
-
-
 }
