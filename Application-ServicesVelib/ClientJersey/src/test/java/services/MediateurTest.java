@@ -44,7 +44,7 @@ public class MediateurTest {
         MediateurService serviceApi = new Mediateur();
 
         //When
-        String risque = serviceApi.getInfoChausser("Toulouse");
+        String risque = serviceApi.getInfoChaussee("Toulouse");
 
         //Then
         assertTrue(risque.equals("FAIBLE") ||
