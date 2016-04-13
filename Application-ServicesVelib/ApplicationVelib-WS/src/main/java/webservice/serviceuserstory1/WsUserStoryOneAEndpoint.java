@@ -35,23 +35,20 @@ public class WsUserStoryOneAEndpoint {
 
    @PayloadRoot(localPart = "StationRequest",namespace = NAMESPACE_URI)
    @ResponsePayload
-   public Element getStation(@RequestPayload JAXBElement<StationRequestType> request){
+   public Element getStation (@RequestPayload JAXBElement<StationRequestType> request) {
 
-
-       /*Récuperation des valeur de la requeste*/
+       // Récuperation des valeurs de la requête
        StationRequestType requestClient = request.getValue();
 
-       //Création de la reponse qui sera envoyé au client
+       //Création de la reponse qui sera envoyée au client
        StationReponseType reponseClient = new StationReponseType();
        StationsType listStationReponse = new StationsType();
 
-       //Récuperation des station non vides via les api.
+       //Récuperation des stations non vides via les api.
        List<Station> listStation;
        String chaineRequete = String.format("%s, %s, %s, %s",
                requestClient.getNumeroRue(),requestClient.getNomRue(), requestClient.getVille(),
                requestClient.getCodePostal());
-
-
 
        listStation = serviceApi.getStationsNonVides(requestClient.getVille(),chaineRequete);
 
@@ -59,14 +56,13 @@ public class WsUserStoryOneAEndpoint {
        ObjectFactory factory = new ObjectFactory();
        Iterator<Station>  it = listStation.iterator();
 
-       while(it.hasNext()){
+       while (it.hasNext()) {
            listStationReponse.getStation().add(factory.createStationType(it.next()));
        }
 
        reponseClient.setStations(listStationReponse);
 
        return factory.createElementStation(reponseClient);
-
     }
 
 
@@ -74,23 +70,19 @@ public class WsUserStoryOneAEndpoint {
     @ResponsePayload
     public Element getStationNonComplete(@RequestPayload JAXBElement<StationRequestType> request){
 
-
-
-
-       /*Récuperation des valeur de la requeste*/
+       // Récuperation des valeurs de la requête
         StationRequestType requestClient = request.getValue();
 
-        //Création de la reponse qui sera envoyé au client
+        //Création de la reponse qui sera envoyée au client
         StationReponseType reponseClient = new StationReponseType();
         StationsType listStationReponse = new StationsType();
 
-        //Récuperation des station non vides via les api.
+        //Récuperation des stations non vides via les api.
         List<Station> listStation;
 
         String chaineRequete = String.format("%s, %s, %s, %s",
                 requestClient.getNumeroRue(),requestClient.getNomRue(), requestClient.getVille(),
                 requestClient.getCodePostal());
-
 
         listStation = serviceApi.getStationsNonCompletes(requestClient.getVille(),chaineRequete);
 
@@ -105,7 +97,6 @@ public class WsUserStoryOneAEndpoint {
         reponseClient.setStations(listStationReponse);
 
         return factory.createElementStation(reponseClient);
-
     }
 
 }

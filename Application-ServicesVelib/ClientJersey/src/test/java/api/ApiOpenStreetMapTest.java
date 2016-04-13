@@ -31,6 +31,5 @@ public class ApiOpenStreetMapTest {
 
         //When
         assertTrue(apiOpenSM.isConnected());
-
     }
 }

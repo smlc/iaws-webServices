@@ -34,7 +34,7 @@ public class WsUserStoryFourEndpoint {
 
     @PayloadRoot(localPart = "RequestWs4",namespace = NAMESPACE_URI)
     @ResponsePayload
-    public JAXBElement<ResponseWs4Type> getTempsTrajetVelo(@RequestPayload JAXBElement<RequestWs4Type> request){
+    public JAXBElement<ResponseWs4Type> getTempsTrajetVelo (@RequestPayload JAXBElement<RequestWs4Type> request) {
 
         // Récupération des valeurs de la requête
         RequestWs4Type requestClient = request.getValue();
@@ -68,6 +68,7 @@ public class WsUserStoryFourEndpoint {
         // Création de la réponse qui sera envoyée au client
         ResponseWs4Type responseClient = new ResponseWs4Type();
         responseClient.setTime(responseTime);
+
         return new ObjectFactory().createResponseWs4(responseClient);
     }
 }

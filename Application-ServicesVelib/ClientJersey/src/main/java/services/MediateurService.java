@@ -15,12 +15,11 @@ public interface MediateurService {
 
     public List<Station> getStationsNonCompletes (String contract, String address);
 
-    public String getInfoChausser(String ville);
+    public String getInfoChaussee (String city);
 
+    public String getTempsTrajet (String addressStart, String addressArrival, String city);
 
-    public String getTempsTrajet (String addressDepart,String addressArriver,String ville);
-
-    public String getTempsTrajetVelo(String addressDepart,String addressArriver,String ville);
+    public String getTempsTrajetVelo (String addressStart, String addressArrival, String city);
 
 
 }

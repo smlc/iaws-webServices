@@ -36,12 +36,14 @@ public class ApiOpenWeatherMap {
         XPath xPath =  XPathFactory.newInstance().newXPath();
         String pluviometrie = null;
 
+        // Récupération du volume d'eau
         try {
             pluviometrie = xPath.compile("/current/precipitation[@mode]/@value").evaluate(docXML);
         } catch (XPathExpressionException e) {
             e.printStackTrace();
         }
 
+        // On retourne la valeur du volume d'eau que si elle n'est pas nulle
         if (!pluviometrie.isEmpty())
             return Double.parseDouble(pluviometrie);
         return 0.;

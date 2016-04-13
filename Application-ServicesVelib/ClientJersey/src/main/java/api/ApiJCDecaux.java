@@ -25,7 +25,7 @@ public class ApiJCDecaux {
     private static String apiKey = "f6c3385d0ce14f88d6616b15c85bd3989aa478a8";
     private static String UriApi = "https://api.jcdecaux.com/vls/v1/stations?apiKey="+apiKey;
 
-    public ApiJCDecaux(){
+    public ApiJCDecaux() {
 
         wt = ClientBuilder.newClient().register(new ClientResponseFilter() {
 
@@ -35,12 +35,9 @@ public class ApiJCDecaux {
                 responseContext.getHeaders().put("Content-Type", contentType);
             }
         }).target(UriApi);
-
-
     }
 
-    public List<Station> getStation(String contract){
-
+    public List<Station> getStation (String contract) {
 
         jsonArray = wt.queryParam("contract",contract).request(MediaType.APPLICATION_JSON).get(JsonArray.class);
 
@@ -55,11 +52,10 @@ public class ApiJCDecaux {
             e.printStackTrace();
         }
 
-
         return stationList;
     }
 
-    public boolean isConnected(){
+    public boolean isConnected () {
 
         if(wt.request().head().getStatus()==200){
             return true;

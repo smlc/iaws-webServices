@@ -17,37 +17,34 @@ import javax.xml.xpath.XPathFactory;
  */
 public class ApiOpenStreetMap {
 
-
     Client client;
     WebTarget wt;
     private static String UriApi = "http://nominatim.openstreetmap.org/search?format=xml";
 
-    public ApiOpenStreetMap(){
+    public ApiOpenStreetMap () {
         wt = ClientBuilder.newClient().target(UriApi);
         if(!isConnected()){
             System.out.println("Connexion echoué");
             return;
         }
     }
-    public boolean isConnected(){
+
+    public boolean isConnected () {
         if(wt.request().head().getStatus()==200)
             return true;
 
         return false;
     }
-    public Coordonne getLatLong(String address) {
 
-
+    public Coordonne getLatLong (String address) {
 
         Document docXML = wt.queryParam("q",address)
                 .request(MediaType.APPLICATION_XML).get(Document.class);
-
 
         if(!isConnected()){
             System.out.println("Connexion echoué");
             return null;
         }
-
 
         XPath xPath =  XPathFactory.newInstance().newXPath();
 
@@ -59,7 +56,6 @@ public class ApiOpenStreetMap {
         } catch (XPathExpressionException e) {
             e.printStackTrace();
         }
-
 
         return new Coordonne(Double.parseDouble(lat),Double.parseDouble(lon));
     }
