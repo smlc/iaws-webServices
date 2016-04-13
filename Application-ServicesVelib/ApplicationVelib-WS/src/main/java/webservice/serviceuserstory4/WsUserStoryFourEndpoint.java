@@ -1,4 +1,4 @@
-package webservice.serviceuserstory3;
+package webservice.serviceuserstory4;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -6,44 +6,43 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import services.MediateurService;
-import webservice.serviceuserstory3.beanRequeteUserStory3.AdresseType;
-import webservice.serviceuserstory3.beanRequeteUserStory3.ObjectFactory;
-import webservice.serviceuserstory3.beanRequeteUserStory3.RequestWs3Type;
-import webservice.serviceuserstory3.beanRequeteUserStory3.ResponseWs3Type;
-
+import webservice.serviceuserstory4.beanRequeteUserStory4.AdresseType;
+import webservice.serviceuserstory4.beanRequeteUserStory4.ObjectFactory;
+import webservice.serviceuserstory4.beanRequeteUserStory4.RequestWs4Type;
+import webservice.serviceuserstory4.beanRequeteUserStory4.ResponseWs4Type;
 
 import javax.xml.bind.JAXBElement;
 import java.util.Iterator;
 
 /**
- * Created by lova on 09/04/16.
+ * Created by lova on 12/04/16.
  */
 
 @Endpoint
-public class WsUserStoryThreeEndpoint {
+public class WsUserStoryFourEndpoint {
 
     private static final String NAMESPACE_URI = "http://iaws/ws/contractfirst/station";
 
     private MediateurService serviceApi;
 
     @Autowired
-    public WsUserStoryThreeEndpoint(MediateurService serviceApi) {
+    public WsUserStoryFourEndpoint(MediateurService serviceApi) {
+
         this.serviceApi = serviceApi;
     }
 
-    @PayloadRoot(localPart = "RequestWs3",namespace = NAMESPACE_URI)
+    @PayloadRoot(localPart = "RequestWs4",namespace = NAMESPACE_URI)
     @ResponsePayload
-    public JAXBElement<ResponseWs3Type> getTempsTrajet(@RequestPayload JAXBElement<RequestWs3Type> request){
+    public JAXBElement<ResponseWs4Type> getTempsTrajetVelo(@RequestPayload JAXBElement<RequestWs4Type> request){
 
         // Récupération des valeurs de la requête
-        RequestWs3Type requestClient = request.getValue();
+        RequestWs4Type requestClient = request.getValue();
 
         // Récupération des adresses
         Iterator<AdresseType> it = requestClient.getAdresse().iterator();
         AdresseType address;
         String requestAddressStart = null;
         String requestAddressArrival = null;
-        String responseTime = null;
 
         while(it.hasNext()){
             address = it.next();
@@ -62,13 +61,12 @@ public class WsUserStoryThreeEndpoint {
             }
         }
 
-        responseTime = this.serviceApi.getTempsTrajet(requestAddressStart, requestAddressArrival,
+        String responseTime = this.serviceApi.getTempsTrajetVelo(requestAddressStart, requestAddressArrival,
                 requestClient.getAdresse().get(0).getVille());
 
         // Création de la réponse qui sera envoyée au client
-        ResponseWs3Type responseClient = new ResponseWs3Type();
+        ResponseWs4Type responseClient = new ResponseWs4Type();
         responseClient.setTime(responseTime);
-
-        return new ObjectFactory().createResponseWs3(responseClient);
+        return new ObjectFactory().createResponseWs4(responseClient);
     }
 }

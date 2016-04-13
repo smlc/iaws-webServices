@@ -1,0 +1,16 @@
+<RequestWs4 xmlns="http://iaws/ws/contractfirst/station"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://iaws/ws/contractfirst/station RequestContract.xsd" >
+    <adresse att="depart">
+        <numeroRue>31</numeroRue>
+        <nomRue>rue Valade</nomRue>
+        <codePostal>31000</codePostal>
+        <ville>Toulouse</ville>
+    </adresse>
+    <adresse att="arrivee">
+        <numeroRue>43</numeroRue>
+        <nomRue>chemin des Maraîchers</nomRue>
+        <codePostal>31400</codePostal>
+        <ville>Toulouse</ville>
+    </adresse>
+</RequestWs4>

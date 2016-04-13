@@ -1,5 +1,5 @@
 
-package webservice.serviceuserstory3.beanRequeteUserStory3;
+package webservice.serviceuserstory4.beanRequeteUserStory4;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -8,12 +8,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ResponseWs3Type complex type.
+ * <p>Java class for ResponseWs4Type complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ResponseWs3Type">
+ * &lt;complexType name="ResponseWs4Type">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ResponseWs3Type", namespace = "http://iaws/ws/contractfirst/station", propOrder = {
+@XmlType(name = "ResponseWs4Type", namespace = "http://iaws/ws/contractfirst/station", propOrder = {
     "time"
 })
-public class ResponseWs3Type {
+public class ResponseWs4Type {
 
     @XmlElement(namespace = "http://iaws/ws/contractfirst/station", required = true)
     protected String time;
