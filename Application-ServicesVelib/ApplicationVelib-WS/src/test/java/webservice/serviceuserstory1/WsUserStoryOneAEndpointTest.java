@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.test.server.MockWebServiceClient;
@@ -18,6 +19,7 @@ import javax.xml.transform.stream.StreamSource;
 import static org.springframework.ws.test.server.RequestCreators.withPayload;
 import static org.springframework.ws.test.server.ResponseMatchers.payload;
 import static org.springframework.ws.test.server.ResponseMatchers.soapEnvelope;
+import static org.springframework.ws.test.server.ResponseMatchers.validPayload;
 
 
 /**
@@ -40,9 +42,8 @@ public class WsUserStoryOneAEndpointTest {
     @Test
     public void getStationNonVides() throws Exception {
         Source requestPayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory1/StationRequest.xml").getInputStream());
-        Source responsePayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory1/StationReponse.xml").getInputStream());
-
+        Resource schemaXsd = new ClassPathResource("/webservice.serviceuserstory1/StationRequestContract.xsd");
         mockClient.sendRequest(withPayload(requestPayload)).
-                andExpect(payload(responsePayload));
+                andExpect(validPayload(schemaXsd));
     }
 }

@@ -83,9 +83,9 @@ public class Mediateur implements MediateurService {
         Coordonne coordonneAddressArrive = openStreetMap.getLatLong(addressArriver);
         Double distanceEntreDepartArriver = arcGIS.getDistance(coordonneAddressDepart,coordonneAddressArrive);
 
-        //t=D/V*
-        //v = 3,6 km/h
-        //vitesse pieton google = 4.799
+        //t=D/V
+        // v = 3,93 km/h
+        //vitesse pieton google environ 4.799
         Temps tempsTrajet = calculTempsTrajet(distanceEntreDepartArriver,ville,vitessePietonEnKm );
         return formatTemps(tempsTrajet.getHeure(),tempsTrajet.getMinute(),tempsTrajet.getSeconde());
     }

@@ -13,13 +13,6 @@ import webservice.serviceuserstory3.beanRequeteUserStory3.ResponseWs3Type;
 
 
 import javax.xml.bind.JAXBElement;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 
 /**
@@ -35,7 +28,6 @@ public class WsUserStoryThreeEndpoint {
 
     @Autowired
     public WsUserStoryThreeEndpoint(MediateurService serviceApi) {
-
         this.serviceApi = serviceApi;
     }
 

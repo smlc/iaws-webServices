@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.test.server.MockWebServiceClient;
@@ -16,6 +17,7 @@ import javax.xml.transform.stream.StreamSource;
 
 import static org.springframework.ws.test.server.RequestCreators.withPayload;
 import static org.springframework.ws.test.server.ResponseMatchers.payload;
+import static org.springframework.ws.test.server.ResponseMatchers.validPayload;
 
 
 /**
@@ -40,7 +42,12 @@ public class WsUserStoryTWOEndpointTest {
         Source requestPayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory2/Request.xml").getInputStream());
         Source responsePayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory2/Reponse.xml").getInputStream());
 
+
+        Resource schemaXsd = new ClassPathResource("/webservice.serviceuserstory2/ReponseContract.xsd");
         mockClient.sendRequest(withPayload(requestPayload)).
-                andExpect(payload(responsePayload));
+                andExpect(validPayload(schemaXsd));
+/*
+        mockClient.sendRequest(withPayload(requestPayload)).
+                andExpect(payload(responsePayload));*/
     }
 }
