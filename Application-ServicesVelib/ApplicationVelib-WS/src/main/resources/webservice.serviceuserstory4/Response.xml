@@ -1,5 +1,5 @@
-<ResponseWs3 xmlns="http://iaws/ws/contractfirst/station"
+<ResponseWs4 xmlns="http://iaws/ws/contractfirst/station"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://iaws/ws/contractfirst/station ResponseContract.xsd">
-    <time>00:01:31</time>
-</ResponseWs3>
+    <time>00:19:14</time>
+</ResponseWs4>

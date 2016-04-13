@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://iaws/ws/contractfirst/station" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="RequestWs3" type="stat:RequestWs3Type" xmlns:stat="http://iaws/ws/contractfirst/station"/>
+  <xs:element name="RequestWs4" type="stat:RequestWs4Type" xmlns:stat="http://iaws/ws/contractfirst/station"/>
   <xs:complexType name="adresseType">
     <xs:sequence>
       <xs:element name="numeroRue">
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="31"/>
-            <xs:enumeration value="38"/>
+            <xs:enumeration value="43"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-      <xs:element type="xs:string" name="nomRue"/>
-      <xs:element type="xs:string" name="codePostal"/>
+      <xs:element name="nomRue">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="rue Valade"/>
+            <xs:enumeration value="chemin des Maraîchers"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="codePostal">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="31000"/>
+            <xs:enumeration value="31400"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
       <xs:element type="xs:string" name="ville"/>
     </xs:sequence>
     <xs:attribute type="xs:string" name="att" use="optional"/>
   </xs:complexType>
-  <xs:complexType name="RequestWs3Type">
+  <xs:complexType name="RequestWs4Type">
     <xs:sequence>
       <xs:element type="stat:adresseType" name="adresse" maxOccurs="unbounded" minOccurs="0" xmlns:stat="http://iaws/ws/contractfirst/station"/>
     </xs:sequence>

@@ -1,7 +1,11 @@
 
-package webservice.serviceuserstory3.beanRequeteUserStory3;
+package webservice.serviceuserstory4.beanRequeteUserStory4;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
@@ -18,12 +22,26 @@ import javax.xml.bind.annotation.*;
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *               &lt;enumeration value="31"/>
- *               &lt;enumeration value="38"/>
+ *               &lt;enumeration value="118"/>
  *             &lt;/restriction>
  *           &lt;/simpleType>
  *         &lt;/element>
- *         &lt;element name="nomRue" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="codePostal" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="nomRue">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;enumeration value="rue Valade"/>
+ *               &lt;enumeration value="route de Narbonne"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
+ *         &lt;element name="codePostal">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;enumeration value="31000"/>
+ *               &lt;enumeration value="31062"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
  *         &lt;element name="ville" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *       &lt;attribute name="att" type="{http://www.w3.org/2001/XMLSchema}string" />

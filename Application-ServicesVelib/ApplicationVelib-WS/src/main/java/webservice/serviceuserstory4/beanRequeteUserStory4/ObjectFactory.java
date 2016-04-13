@@ -1,5 +1,5 @@
 
-package webservice.serviceuserstory3.beanRequeteUserStory3;
+package webservice.serviceuserstory4.beanRequeteUserStory4;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
@@ -24,7 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _ResponseWs3_QNAME = new QName("http://iaws/ws/contractfirst/station", "ResponseWs3");
+    private final static QName _ResponseWs4_QNAME = new QName("http://iaws/ws/contractfirst/station", "ResponseWs4");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: beanRequeteUserStory4
@@ -34,20 +34,20 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ResponseWs3Type }
-     *
+     * Create an instance of {@link ResponseWs4Type }
+     * 
      */
-    public ResponseWs3Type createResponseWs3Type() {
-        return new ResponseWs3Type();
+    public ResponseWs4Type createResponseWs4Type() {
+        return new ResponseWs4Type();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ResponseWs3Type }{@code >}}
-     *
+     * Create an instance of {@link JAXBElement }{@code <}{@link ResponseWs4Type }{@code >}}
+     * 
      */
-    @XmlElementDecl(namespace = "http://iaws/ws/contractfirst/station", name = "ResponseWs3")
-    public JAXBElement<ResponseWs3Type> createResponseWs3(ResponseWs3Type value) {
-        return new JAXBElement<ResponseWs3Type>(_ResponseWs3_QNAME, ResponseWs3Type.class, null, value);
+    @XmlElementDecl(namespace = "http://iaws/ws/contractfirst/station", name = "ResponseWs4")
+    public JAXBElement<ResponseWs4Type> createResponseWs4(ResponseWs4Type value) {
+        return new JAXBElement<ResponseWs4Type>(_ResponseWs4_QNAME, ResponseWs4Type.class, null, value);
     }
 
 }
