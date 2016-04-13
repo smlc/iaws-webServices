@@ -1,8 +1,6 @@
 
-
 package webservice.serviceuserstory1.beanRequete;
 
-import com.sun.xml.internal.bind.marshaller.NamespacePrefixMapper;
 import domain.Station;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

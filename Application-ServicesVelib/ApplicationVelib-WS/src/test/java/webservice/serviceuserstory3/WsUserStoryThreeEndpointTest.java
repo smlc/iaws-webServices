@@ -14,7 +14,6 @@ import org.springframework.ws.test.server.MockWebServiceClient;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-import static org.junit.Assert.*;
 import static org.springframework.ws.test.server.RequestCreators.withPayload;
 import static org.springframework.ws.test.server.ResponseMatchers.payload;
 import static org.springframework.ws.test.server.ResponseMatchers.validPayload;
@@ -23,7 +22,7 @@ import static org.springframework.ws.test.server.ResponseMatchers.validPayload;
  * Created by lova on 09/04/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/application-context.xml")
+@ContextConfiguration("application-context.xml")
 public class WsUserStoryThreeEndpointTest {
 
     @Autowired
@@ -38,10 +37,10 @@ public class WsUserStoryThreeEndpointTest {
 
     @Test
     public void testGetTempsTrajet() throws Exception {
-        Source requestPayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory3/Request.xml").getInputStream());
-        Source responsePayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory3/Response.xml").getInputStream());
+        Source requestPayload = new StreamSource(new ClassPathResource("/webservice/serviceuserstory3/Request.xml").getInputStream());
+        Source responsePayload = new StreamSource(new ClassPathResource("/webservice/serviceuserstory3/Response.xml").getInputStream());
 
-        Resource schemaXsd = new ClassPathResource("/webservice.serviceuserstory3/ResponseContract.xsd");
+        Resource schemaXsd = new ClassPathResource("/webservice/serviceuserstory3/ResponseContract.xsd");
         mockClient.sendRequest(withPayload(requestPayload)).
                 andExpect(validPayload(schemaXsd));
     }

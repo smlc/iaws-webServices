@@ -24,7 +24,7 @@ import static org.springframework.ws.test.server.ResponseMatchers.*;
  * Created by mars on 03/04/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/application-context.xml")
+@ContextConfiguration("application-context.xml")
 public class WsUserStoryOneAEndpointTest {
 
     @Autowired
@@ -39,8 +39,8 @@ public class WsUserStoryOneAEndpointTest {
 
     @Test
     public void getStationNonVides() throws Exception {
-        Source requestPayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory1/StationRequest.xml").getInputStream());
-        Resource schemaXsd = new ClassPathResource("/webservice.serviceuserstory1/StationReponseContact.xsd");
+        Source requestPayload = new StreamSource(new ClassPathResource("/webservice/serviceuserstory1/StationRequest.xml").getInputStream());
+        Resource schemaXsd = new ClassPathResource("/webservice/serviceuserstory1/StationReponseContact.xsd");
         mockClient.sendRequest(withPayload(requestPayload)).
                 andExpect(validPayload(schemaXsd));
 
@@ -48,8 +48,8 @@ public class WsUserStoryOneAEndpointTest {
 
     @Test
     public void getStationNonComplete() throws Exception {
-        Source requestPayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory1/StationRequestNonComplete.xml").getInputStream());
-        Resource schemaXsd = new ClassPathResource("/webservice.serviceuserstory1/StationReponseContact.xsd");
+        Source requestPayload = new StreamSource(new ClassPathResource("/webservice/serviceuserstory1/StationRequestNonComplete.xml").getInputStream());
+        Resource schemaXsd = new ClassPathResource("/webservice/serviceuserstory1/StationReponseContact.xsd");
         mockClient.sendRequest(withPayload(requestPayload)).
                 andExpect(validPayload(schemaXsd));
     }

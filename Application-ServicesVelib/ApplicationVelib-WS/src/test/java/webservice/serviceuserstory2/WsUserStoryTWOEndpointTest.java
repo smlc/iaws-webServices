@@ -24,7 +24,7 @@ import static org.springframework.ws.test.server.ResponseMatchers.validPayload;
  * Created by mars on 03/04/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/application-context.xml")
+@ContextConfiguration("application-context.xml")
 public class WsUserStoryTWOEndpointTest {
 
     @Autowired
@@ -39,8 +39,8 @@ public class WsUserStoryTWOEndpointTest {
 
     @Test
     public void getInfoChausser() throws Exception {
-        Source requestPayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory2/Request.xml").getInputStream());
-        Resource schemaXsd = new ClassPathResource("/webservice.serviceuserstory2/ReponseContract.xsd");
+        Source requestPayload = new StreamSource(new ClassPathResource("/webservice/serviceuserstory2/Request.xml").getInputStream());
+        Resource schemaXsd = new ClassPathResource("/webservice/serviceuserstory2/ReponseContract.xsd");
 
         mockClient.sendRequest(withPayload(requestPayload)).
                 andExpect(validPayload(schemaXsd));

@@ -2,11 +2,7 @@
 package webservice.serviceuserstory1.beanRequete;
 
 import javax.annotation.Generated;
-import javax.jws.WebResult;
 import javax.xml.bind.annotation.*;
-import javax.xml.ws.ResponseWrapper;
-
-import org.springframework.ws.server.endpoint.annotation.*;
 
 /**
  * <p>Java class for StationReponseType complex type.

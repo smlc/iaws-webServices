@@ -6,12 +6,9 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import services.MediateurService;
-import webservice.serviceuserstory1.beanRequete.StationReponseType;
 import webservice.serviceuserstory1.beanRequete.StationRequestType;
 import webservice.serviceuserstory2.beanRequeteUserStory2.EnumRisque;
 import webservice.serviceuserstory2.beanRequeteUserStory2.ReponseWS2;
-
-import javax.xml.bind.JAXBElement;
 
 
 /**

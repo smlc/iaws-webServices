@@ -13,7 +13,6 @@ import org.springframework.ws.test.server.MockWebServiceClient;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-import static org.junit.Assert.*;
 import static org.springframework.ws.test.server.RequestCreators.withPayload;
 import static org.springframework.ws.test.server.ResponseMatchers.payload;
 
@@ -21,7 +20,7 @@ import static org.springframework.ws.test.server.ResponseMatchers.payload;
  * Created by lova on 12/04/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/application-context.xml")
+@ContextConfiguration("application-context.xml")
 public class WsUserStoryFourEndpointTest {
 
     @Autowired
@@ -36,8 +35,8 @@ public class WsUserStoryFourEndpointTest {
 
     @Test
     public void testGetTempsTrajetVelo() throws Exception {
-        Source requestPayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory4/Request.xml").getInputStream());
-        Source responsePayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory4/Response.xml").getInputStream());
+        Source requestPayload = new StreamSource(new ClassPathResource("/webservice/serviceuserstory4/Request.xml").getInputStream());
+        Source responsePayload = new StreamSource(new ClassPathResource("/webservice/serviceuserstory4/Response.xml").getInputStream());
 
         mockClient.sendRequest(withPayload(requestPayload)).
                 andExpect(payload(responsePayload));

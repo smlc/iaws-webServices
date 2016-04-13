@@ -1,21 +1,19 @@
 package webservice.serviceuserstory1;
 import domain.Station;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ws.server.endpoint.annotation.Endpoint;
+import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
+import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import org.w3c.dom.Element;
 import services.MediateurService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ws.server.endpoint.annotation.*;
-import webservice.serviceuserstory1.beanRequete.ObjectFactory;
-import webservice.serviceuserstory1.beanRequete.StationReponseType;
-import webservice.serviceuserstory1.beanRequete.StationRequestType;
-import webservice.serviceuserstory1.beanRequete.StationsType;
-
-
-import java.util.Iterator;
-import java.util.List;
+import webservice.serviceuserstory1.beanRequete.*;
 
 
 import javax.xml.bind.JAXBElement;
+import java.util.Iterator;
+import java.util.List;
 
 
 /**
