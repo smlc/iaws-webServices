@@ -49,7 +49,8 @@ public class ApiArcGIS {
 
     public double getDistance (Coordonne pointFrom, Coordonne pointTo) {
 
-        MultivaluedMap<String, String> formData = new MultivaluedHashMap<String, String>();
+        // Construction des paramètres geometry1 et geometry2 de la requête
+        MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
 
         JsonObject jSongeometry1 = Json.createObjectBuilder()
                 .add("geometryType", "esriGeometryPoint")
@@ -65,12 +66,14 @@ public class ApiArcGIS {
                         .add("y", pointTo.getLat()))
                 .build();
 
+        // Construction finale de la requête
         formData.putSingle("sr", this.wkid+"");
         formData.putSingle("geometry1", jSongeometry1.toString());
         formData.putSingle("geometry2", jSongeometry2.toString());
         formData.putSingle("geodesic", "true");
         formData.putSingle("distanceUnit","9036"); //9036 = Km
 
+        // Récupération de la réponse
         JsonObject jSonObjectReponse = wt.path("distance").request(MediaType.APPLICATION_JSON).post(Entity.form(formData), JsonObject.class);
 
         return jSonObjectReponse.getJsonNumber("distance").doubleValue();
@@ -78,13 +81,18 @@ public class ApiArcGIS {
 
     public List<Station> getLengths (Coordonne adressClient, List<Station> stations, boolean emptyOrFull) {
 
+        // Variables initialisées
         MultivaluedMap<String, String> formData = new MultivaluedHashMap<String, String>();
         List<Station> candidateStations = new ArrayList<>();
         List<Station> threeStations = new ArrayList<>();
 
+        // Construction du JsonArray contenant les coordonnées des différentes stations passées
+        // en paramètre pour la requête
         String jsonRequest = "[";
+        // Pour les stations non vides
         if (emptyOrFull) {
             for (int i=0; i<stations.size(); i++) {
+                // On ne récupère que les stations où il y a au moins 1 vélo libre
                 if (stations.get(i).getAvailable_bikes() != 0) {
                     jsonRequest = jsonRequest+"{\"paths\":" +
                             "[[["+adressClient.getLat()+", "+adressClient.getLon()+"], " +
@@ -96,8 +104,9 @@ public class ApiArcGIS {
                     candidateStations.add(stations.get(i));
                 }
             }
-        } else {
+        } else { // Pour les stations non complètes
             for (int i=0; i<stations.size(); i++) {
+                // On ne récupère que les stations où il y a au moins 1 place de vélo libre
                 if (stations.get(i).getAvailable_bike_stands() != 0) {
                     jsonRequest = jsonRequest+"{\"paths\":" +
                             "[[["+adressClient.getLat()+", "+adressClient.getLon()+"], " +
@@ -110,20 +119,23 @@ public class ApiArcGIS {
                 }
             }
         }
-
         jsonRequest = jsonRequest+"]";
 
+        // Parse de la requête en String en JsonArray
         JsonReader reader = Json.createReader(new StringReader(jsonRequest));
         JsonArray polylines = reader.readArray();
         reader.close();
 
+        // Construction finale de la requête
         formData.putSingle("sr", this.wkid+"");
         formData.putSingle("polylines", polylines.toString());
         formData.putSingle("calculationType", "preserveShape");
 
+        // Récupération de la réponse
         JsonArray response = wt.path("lengths").request(MediaType.APPLICATION_JSON).post(Entity.form(formData), JsonObject.class)
                 .getJsonArray("lengths");
 
+        // Récupération des 3 stations les plus proches de l'adresse donnée
         threeStations.addAll(researchThreeLengthsMin(response, candidateStations));
 
         return threeStations;
@@ -144,6 +156,7 @@ public class ApiArcGIS {
             stationList.add(Double.parseDouble(response.get(i).toString()));
         }
 
+        // Récupération des 3 stations dont la distance avec l'adresse de départ sont les plus petites
         for (int j=0; j<3; j++) {
             distanceMin = stationList.get(0);
             for (int i=1; i<stationList.size(); i++) {
