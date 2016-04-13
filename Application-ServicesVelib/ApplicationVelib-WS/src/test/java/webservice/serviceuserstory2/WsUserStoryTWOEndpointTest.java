@@ -40,14 +40,10 @@ public class WsUserStoryTWOEndpointTest {
     @Test
     public void getInfoChausser() throws Exception {
         Source requestPayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory2/Request.xml").getInputStream());
-        Source responsePayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory2/Reponse.xml").getInputStream());
-
-
         Resource schemaXsd = new ClassPathResource("/webservice.serviceuserstory2/ReponseContract.xsd");
+
         mockClient.sendRequest(withPayload(requestPayload)).
                 andExpect(validPayload(schemaXsd));
-/*
-        mockClient.sendRequest(withPayload(requestPayload)).
-                andExpect(payload(responsePayload));*/
+
     }
 }

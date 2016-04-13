@@ -37,8 +37,6 @@ public class ApiJCDecaux {
         }).target(UriApi);
 
 
-
-
     }
 
     public List<Station> getStation(String contract){

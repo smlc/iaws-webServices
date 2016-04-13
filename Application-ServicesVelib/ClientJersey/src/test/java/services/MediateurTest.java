@@ -1,6 +1,9 @@
 package services;
 
+import domain.Station;
 import org.junit.Test;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -9,6 +12,45 @@ import static org.junit.Assert.*;
  */
 public class MediateurTest {
 
+
+    @Test
+    public void getStationsNonVides() throws Exception{
+        //Given
+        MediateurService serviceApi = new Mediateur();
+
+        //When
+        List<Station> stationNonVide = serviceApi.getStationsNonVides("Toulouse","4, Avenue des Herbettes,Toulouse, 31400");
+
+        //Then
+        assertNotSame(0,stationNonVide.size());
+    }
+
+    @Test
+    public void getStationsNonCompletes() throws Exception{
+        //Given
+        MediateurService serviceApi = new Mediateur();
+
+        //When
+        List<Station> stationNonVide = serviceApi.getStationsNonCompletes("Toulouse","4, Avenue des Herbettes,Toulouse, 31400");
+
+        //Then
+        assertNotSame(0,stationNonVide.size());
+    }
+
+
+    @Test
+    public void getInfoChausser() throws Exception{
+        //Given
+        MediateurService serviceApi = new Mediateur();
+
+        //When
+        String risque = serviceApi.getInfoChausser("Toulouse");
+
+        //Then
+        assertTrue(risque.equals("FAIBLE") ||
+                risque.equals("MOYEN") ||
+                risque.equals("FORT") );
+    }
     @Test
     public void getTempsTrajet() throws Exception {
         //Given
@@ -34,5 +76,6 @@ public class MediateurTest {
         assertEquals("00:24:18",tempsTrajet);
 
     }
+
 
 }

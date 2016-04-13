@@ -27,21 +27,20 @@ public class WsUserStoryTWOEndpoint {
 
     @Autowired
     public WsUserStoryTWOEndpoint(MediateurService serviceApi) {
-
         this.serviceApi = serviceApi;
     }
 
    @PayloadRoot(localPart = "RequestWS2",namespace = NAMESPACE_URI)
    @ResponsePayload
-   public ReponseWS2 getInfoChausser(@RequestPayload JAXBElement<StationRequestType> request){
+   public ReponseWS2 getInfoChausser(@RequestPayload StationRequestType request){
 
 
        /*Récuperation des valeur de la requeste*/
-       StationRequestType requestClient = request.getValue();
+      // StationRequestType requestClient = request.;
 
        //Construction de l'address
 
-       String valeurRisqueChausser = serviceApi.getInfoChausser(requestClient.getVille());
+       String valeurRisqueChausser = serviceApi.getInfoChausser(request.getVille());
 
        ReponseWS2 reponseClient = new ReponseWS2();
        reponseClient.setRisque(EnumRisque.fromValue(valeurRisqueChausser));

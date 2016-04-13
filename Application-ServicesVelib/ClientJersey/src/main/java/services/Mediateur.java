@@ -92,7 +92,7 @@ public class Mediateur implements MediateurService {
 
     private Temps calculTempsTrajet(Double distanceAParcourir, String ville, double vitesseDeplacement){
 
-        System.out.println("Distance :"+distanceAParcourir);
+
         Double tempsEnHeure = distanceAParcourir / vitesseDeplacement;
 
         Double quantitePluie = openWeatherMap.getMeteo(ville);
@@ -105,14 +105,13 @@ public class Mediateur implements MediateurService {
             tempsEnHeure = distanceAParcourir / (vitessePietonEnKm/2);
         }
 
-        System.out.println("temps en minute :" +(tempsEnHeure*60));
+
         int heure = tempsEnHeure.intValue();
 
         double minute = (tempsEnHeure % 1.0) * 60;
 
         double seconde = (minute%1)*60;
 
-        System.out.println("minuteDouble "+minute+" secondeDouble "+ seconde);
         return new Temps(heure, (int)minute,(int)seconde);
 
     }

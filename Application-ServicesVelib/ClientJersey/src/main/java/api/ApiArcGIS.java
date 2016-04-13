@@ -72,7 +72,7 @@ public class ApiArcGIS {
         formData.putSingle("distanceUnit","9036"); //9036 = Km
 
         JsonObject jSonObjectReponse = wt.path("distance").request(MediaType.APPLICATION_JSON).post(Entity.form(formData), JsonObject.class);
-        System.out.println("ArcGis: "+jSonObjectReponse.getJsonNumber("distance"));
+
         return jSonObjectReponse.getJsonNumber("distance").doubleValue();
     }
 

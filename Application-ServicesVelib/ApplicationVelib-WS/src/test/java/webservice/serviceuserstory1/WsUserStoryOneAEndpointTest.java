@@ -17,9 +17,7 @@ import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
 import static org.springframework.ws.test.server.RequestCreators.withPayload;
-import static org.springframework.ws.test.server.ResponseMatchers.payload;
-import static org.springframework.ws.test.server.ResponseMatchers.soapEnvelope;
-import static org.springframework.ws.test.server.ResponseMatchers.validPayload;
+import static org.springframework.ws.test.server.ResponseMatchers.*;
 
 
 /**
@@ -42,7 +40,16 @@ public class WsUserStoryOneAEndpointTest {
     @Test
     public void getStationNonVides() throws Exception {
         Source requestPayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory1/StationRequest.xml").getInputStream());
-        Resource schemaXsd = new ClassPathResource("/webservice.serviceuserstory1/StationRequestContract.xsd");
+        Resource schemaXsd = new ClassPathResource("/webservice.serviceuserstory1/StationReponseContact.xsd");
+        mockClient.sendRequest(withPayload(requestPayload)).
+                andExpect(validPayload(schemaXsd));
+
+    }
+
+    @Test
+    public void getStationNonComplete() throws Exception {
+        Source requestPayload = new StreamSource(new ClassPathResource("/webservice.serviceuserstory1/StationRequestNonComplete.xml").getInputStream());
+        Resource schemaXsd = new ClassPathResource("/webservice.serviceuserstory1/StationReponseContact.xsd");
         mockClient.sendRequest(withPayload(requestPayload)).
                 andExpect(validPayload(schemaXsd));
     }

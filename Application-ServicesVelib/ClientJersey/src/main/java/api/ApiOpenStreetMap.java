@@ -56,7 +56,6 @@ public class ApiOpenStreetMap {
         try {
             lat = xPath.compile("/searchresults/place/@lat").evaluate(docXML);
             lon = xPath.compile("/searchresults/place/@lon").evaluate(docXML);
-            System.out.println(lat +" "+lon);
         } catch (XPathExpressionException e) {
             e.printStackTrace();
         }

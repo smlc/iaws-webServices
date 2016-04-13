@@ -29,7 +29,10 @@ public class ApiJCDecauxTest {
 
         //When
         List<Station> stations = api.getStation("Toulouse");
-        System.out.println(stations.get(1));
-       assertNotSame(0,stations.size());
+
+
+        //Then
+       assertNotNull(stations);
+
     }
 }

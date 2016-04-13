@@ -5,10 +5,15 @@ import services.MediateurService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.*;
+import webservice.serviceuserstory1.beanRequete.ObjectFactory;
+import webservice.serviceuserstory1.beanRequete.StationReponseType;
+import webservice.serviceuserstory1.beanRequete.StationRequestType;
+import webservice.serviceuserstory1.beanRequete.StationsType;
+
 
 import java.util.Iterator;
 import java.util.List;
-import webservice.serviceuserstory1.beanRequete.*;
+
 
 import javax.xml.bind.JAXBElement;
 
@@ -32,9 +37,7 @@ public class WsUserStoryOneAEndpoint {
 
    @PayloadRoot(localPart = "StationRequest",namespace = NAMESPACE_URI)
    @ResponsePayload
-   public Element/*JAXBElement<StationReponseType> */ getStation(@RequestPayload JAXBElement<StationRequestType> request){
-
-
+   public Element getStation(@RequestPayload JAXBElement<StationRequestType> request){
 
 
        /*Récuperation des valeur de la requeste*/
@@ -46,21 +49,14 @@ public class WsUserStoryOneAEndpoint {
 
        //Récuperation des station non vides via les api.
        List<Station> listStation;
-       System.out.println("Test 1");
        String chaineRequete = String.format("%s, %s, %s, %s",
                requestClient.getNumeroRue(),requestClient.getNomRue(), requestClient.getVille(),
                requestClient.getCodePostal());
 
 
-       if(requestClient.isRequeteStationNonVide()){
-           System.out.println("Test 2");
-           listStation = serviceApi.getStationsNonVides(requestClient.getVille(),chaineRequete);
-       }else{
-           listStation = serviceApi.getStationsNonCompletes(requestClient.getVille(),chaineRequete);
-       }
 
+       listStation = serviceApi.getStationsNonVides(requestClient.getVille(),chaineRequete);
 
-       System.out.println("Test 3");
        //Construction de la réponse
        ObjectFactory factory = new ObjectFactory();
        Iterator<Station>  it = listStation.iterator();
@@ -75,5 +71,43 @@ public class WsUserStoryOneAEndpoint {
 
     }
 
+
+    @PayloadRoot(localPart = "StationRequestNonComplete",namespace = NAMESPACE_URI)
+    @ResponsePayload
+    public Element getStationNonComplete(@RequestPayload JAXBElement<StationRequestType> request){
+
+
+
+
+       /*Récuperation des valeur de la requeste*/
+        StationRequestType requestClient = request.getValue();
+
+        //Création de la reponse qui sera envoyé au client
+        StationReponseType reponseClient = new StationReponseType();
+        StationsType listStationReponse = new StationsType();
+
+        //Récuperation des station non vides via les api.
+        List<Station> listStation;
+
+        String chaineRequete = String.format("%s, %s, %s, %s",
+                requestClient.getNumeroRue(),requestClient.getNomRue(), requestClient.getVille(),
+                requestClient.getCodePostal());
+
+
+        listStation = serviceApi.getStationsNonCompletes(requestClient.getVille(),chaineRequete);
+
+        //Construction de la réponse
+        ObjectFactory factory = new ObjectFactory();
+        Iterator<Station>  it = listStation.iterator();
+
+        while(it.hasNext()){
+            listStationReponse.getStation().add(factory.createStationType(it.next()));
+        }
+
+        reponseClient.setStations(listStationReponse);
+
+        return factory.createElementStation(reponseClient);
+
+    }
 
 }

@@ -98,7 +98,6 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://iaws/ws/contractfirst/station", name = "StationReponse")
     public JAXBElement<StationReponseType> createStationReponse(StationReponseType value) {
-
         return new JAXBElement<>(_StationReponse_QNAME, StationReponseType.class, value);
     }
     @XmlElementDecl(namespace = "http://iaws/ws/contractfirst/station", name = "StationReponse")
@@ -112,10 +111,9 @@ public class ObjectFactory {
                 final XMLStreamWriter xmlStreamWriter = XMLOutputFactory
                         .newInstance().createXMLStreamWriter(writer);
                 Marshaller marshaller = jaxbContext.createMarshaller();
-                marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
+
                 marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://iaws/ws/contractfirst/station StationReponseContact.xsd" );
                 marshaller.marshal(element,xmlStreamWriter);
-                marshaller.marshal(element,System.out);
             } catch (JAXBException e) {
                 e.printStackTrace();
             } catch (XMLStreamException e) {
